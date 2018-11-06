@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  airasset:
+    image: ${DOCKER_REGISTRY}airasset
+    build:
+      context: .\AirAsset
+      dockerfile: Dockerfile
