@@ -1,0 +1,5 @@
+﻿-- resolve bug: Fixed git fatal Could not read from remote repository
+- go to C:\Users\NG7AA1A\Desktop\workspace\.git
+- edit config file
+- replace git@github.com:papatraoreab/AirAsset.git (located in [remote "origin"])
+  by https://github.com/papatraoreab/AirAsset.git (take this link to git repositories)
