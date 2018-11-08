@@ -1,0 +1,144 @@
+﻿@model AirAsset.Models.Moyen
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Moyen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.moyenCODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.moyenCODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.designation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.designation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.secteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.secteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.program)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.program)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.entrepot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.entrepot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.poids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.poids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cmu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cmu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hauteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hauteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longueur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longueur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.largeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.largeur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vVent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vVent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_number)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

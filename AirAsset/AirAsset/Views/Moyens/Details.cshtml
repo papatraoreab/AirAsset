@@ -1,0 +1,150 @@
+﻿@model AirAsset.Models.Moyen
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Moyen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.moyenCODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.moyenCODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.designation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.designation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.secteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.secteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.program)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.program)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.entrepot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.entrepot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.poids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.poids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cmu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cmu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hauteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hauteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longueur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longueur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.largeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.largeur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vVent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vVent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_number)
+        </dd>
+
+        <!--print file, added to correct error, le nom 'FileType n'existe pas dans le context actuel, replace(FileType,AirAsset.Models.FileType ) -->
+        @if (Model.Files.Any(f => f.FileType == AirAsset.Models.FileType.Capture))
+
+        {
+            <dt>
+                Capture
+            </dt>
+            <dd>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Capture).fileId" alt="capture" /> <!-- voir -->
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.moyenID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

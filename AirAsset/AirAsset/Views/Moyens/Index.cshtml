@@ -1,0 +1,133 @@
+﻿@model IEnumerable<AirAsset.Models.Moyen>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.moyenCODE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.secteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.program)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.entrepot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+
+
+
+    <!-- hiden display
+
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.poids)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cmu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hauteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.longueur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.largeur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vVent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.t_number)
+        </th>
+    -->
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.moyenCODE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.designation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.secteur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.program)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.entrepot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+
+
+
+        <!-- hiden display
+
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.poids)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cmu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hauteur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.longueur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.largeur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vVent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.t_number)
+        </td>
+
+    -->
+
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.moyenID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.moyenID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.moyenID })
+        </td>
+    </tr>
+}
+
+</table>
