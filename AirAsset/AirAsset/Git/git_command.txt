@@ -1,0 +1,44 @@
+﻿-- display the list of modified files as well as the file still need to be added or validated
+git status
+
+-- to validate changes to head
+git commit -m "description of commit"
+
+-- sends the local changes made to the  principal master branch
+git push origin master
+
+-- used to create new branches or switch between them 
+git checkout -b "name of branch"  -- to create a new branch
+git checkout "name of branche" -- to simply move from one branch to another
+
+
+-- allow the user to connect to a remote repository, the following command lists the remote repository currently configured
+git reùote -v
+
+--allows the user to connect the local repository to a remote server 
+git remote add origin "remote server address"
+
+-- to list all branches
+git branch
+
+-- delete branch
+git branch -d
+
+-- to merge all the changes on the remote repositories into the local working directory
+git pull
+
+-- to merge one branch into the active branch
+git merge "name of branche"
+
+-- to list all conflicts in a file
+git diff --base "file name"
+
+-- display all conficts between branches to before merging
+git diff "source branch" "target branch"
+
+-- to simply list all current conflicts
+git diff
+
+-- 
+
+
