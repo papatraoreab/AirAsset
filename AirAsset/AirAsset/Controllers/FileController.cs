@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace AirAsset.Controllers
 {
+    [Authorize]
     public class FileController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -1,12 +1,16 @@
 select * from Moyens
 select * from Exemplaires
 select * from Files
-select * from AspNetRoles
-select * from AspNetUsers
+select * from AspNetRoles -- roles
+select * from AspNetUsers --users
 select * from AspNetUserClaims
 select * from AspNetUserLogins
-select * from AspNetUserRoles
+select * from AspNetUserRoles -- users role
 select * from __MigrationHistory
+
+
+
+-- select 
 
 select moyenCODE, exemplaireCODE from exemplaires,moyens 
 
@@ -35,6 +39,12 @@ drop table __MigrationHistory
 /*
 update Exemplaires set moyenCODE ='XXY000-1' where exemplaireID=1
 
-update AspNetUsers set UserName ='papa.traore.external@airbus.com' where Id='ab89792c-1113-4c21-bce6-2a74be29f650'
+
+select* from AspNetUsers
+update AspNetUsers set UserName ='username' where Id='id'
+truncate table AspNetUsers=> impossible
+delete from AspNetUsers
+select MAX(id) from AspNetUsers
+
 */
 

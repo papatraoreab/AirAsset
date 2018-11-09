@@ -201,6 +201,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoyensController.cs" />
+    <Compile Include="Controllers\SecretController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,6 +237,9 @@
     <Content Include="Git\git_command.txt" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\airasset_img_airbus2.PNG" />
+    <Content Include="Images\airasset_img_airbus3.PNG" />
+    <Content Include="Images\airasset_img_airbus4.PNG" />
     <Content Include="Request\reseed-identity_column.sql" />
     <Content Include="Request\request.sql" />
     <Content Include="Scripts\bootstrap.js" />
@@ -306,6 +310,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Files\" />
+    <Folder Include="Views\Secret\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -86,7 +86,7 @@ namespace AirAsset.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Tentative de connexion non valide.");
+                    ModelState.AddModelError("", "Connexion refusée. Le nom de compte et/ou le mot de passe sont incorrects.");
                     return View(model);
             }
         }

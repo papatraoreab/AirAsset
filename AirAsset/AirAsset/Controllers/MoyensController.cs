@@ -11,6 +11,7 @@ using AirAsset.Models;
 
 namespace AirAsset.Controllers
 {
+    [Authorize]
     public class MoyensController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -88,6 +89,7 @@ namespace AirAsset.Controllers
         }
 
         // GET: Moyens/Edit/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -125,8 +127,11 @@ namespace AirAsset.Controllers
 
 
         //changes|modification maked to Edit (see above) to implemeted the file upload change
+
+        // POST: Moyens/Edit/5
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult EditPost(int? id, HttpPostedFileBase upload)
         {
             if (id == null)
@@ -176,6 +181,7 @@ namespace AirAsset.Controllers
 
 
         // GET: Moyens/Delete/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -191,6 +197,7 @@ namespace AirAsset.Controllers
         }
 
         // POST: Moyens/Delete/5
+        [Authorize(Roles = "canEdit")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

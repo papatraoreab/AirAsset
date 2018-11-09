@@ -11,11 +11,13 @@ using AirAsset.Models;
 
 namespace AirAsset.Controllers
 {
+    [Authorize]
     public class ExemplairesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Exemplaires
+        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com,ahmed.seghrouchni@airasset.com")]
         public ActionResult Index()
         {
             var exemplaires = db.Exemplaires.Include(e => e.Moyen);
@@ -23,6 +25,7 @@ namespace AirAsset.Controllers
         }
 
         // GET: Exemplaires/Details/5
+        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com,ahmed.seghrouchni@airasset.com")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,9 +39,6 @@ namespace AirAsset.Controllers
             }
             return View(exemplaire);
         }
-
-
-
 
 
         /* default 4 methods of Create and Edit
@@ -107,13 +107,16 @@ namespace AirAsset.Controllers
 
         // start new 4 methods of Create and Edit
 
-
+        // GET: Exemplaires/Create
+        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
         public ActionResult Create(ApplicationModel app)
         {
             MoyensDropDownList();
             return View(new Exemplaire(app));
         }
 
+        // POST: Exemplaires/Create
+        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "exemplaireID,moyenID,designation,exemplaireCODE,quantite,prix,suivi,location,fournisseur,statut,Date_ES,Date_FS")]Exemplaire exemplaire)
@@ -136,6 +139,9 @@ namespace AirAsset.Controllers
             return View(exemplaire);
         }
 
+        // GET: Exemplaires/Edit/5
+        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
+        [Authorize(Roles ="canEdit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -151,6 +157,9 @@ namespace AirAsset.Controllers
             return View(exemplaire);
         }
 
+        // POST: Exemplaires/Edit/5
+        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
+        [Authorize(Roles = "canEdit")]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id)
@@ -192,6 +201,8 @@ namespace AirAsset.Controllers
 
 
         // GET: Exemplaires/Delete/5
+        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com")]
+        [Authorize(Roles = "canEdit")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -207,6 +218,8 @@ namespace AirAsset.Controllers
         }
 
         // POST: Exemplaires/Delete/5
+        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com")]
+        [Authorize(Roles = "canEdit")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
