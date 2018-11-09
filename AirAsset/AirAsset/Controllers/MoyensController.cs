@@ -39,6 +39,7 @@ namespace AirAsset.Controllers
         }
 
         // GET: Moyens/Create
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create(ApplicationModel app)
         {
             return View(new Moyen(app));
@@ -47,6 +48,7 @@ namespace AirAsset.Controllers
         // POST: Moyens/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "canEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "moyenID,moyenCODE,designation,secteur,program,entrepot,type,description,poids,cmu,hauteur," +

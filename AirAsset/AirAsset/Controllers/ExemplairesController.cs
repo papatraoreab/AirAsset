@@ -109,6 +109,7 @@ namespace AirAsset.Controllers
 
         // GET: Exemplaires/Create
         //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create(ApplicationModel app)
         {
             MoyensDropDownList();
@@ -117,6 +118,7 @@ namespace AirAsset.Controllers
 
         // POST: Exemplaires/Create
         //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
+        [Authorize(Roles = "canEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "exemplaireID,moyenID,designation,exemplaireCODE,quantite,prix,suivi,location,fournisseur,statut,Date_ES,Date_FS")]Exemplaire exemplaire)
