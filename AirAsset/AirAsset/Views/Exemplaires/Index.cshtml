@@ -9,19 +9,27 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<!-- zone de recherche -->
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("Recherche")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
-
-    <!-- hiden display,  replacing(model.moyenID,model.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
         <th>
             @Html.DisplayNameFor(model => model.Moyen.moyenCODE)
         </th>
 
-    -->
-
+        <!-- hiden display,  replacing(model.moyenID,model.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
         <th>
             @Html.DisplayNameFor(model => model.exemplaireCODE)
         </th>
+        -->
         <th>
             @Html.DisplayNameFor(model => model.designation)
         </th>
@@ -38,13 +46,13 @@
             @Html.DisplayNameFor(model => model.location)
         </th>
 
-    <!-- hiden display
+        <!-- hiden display
 
-        <th>
-            @Html.DisplayNameFor(model => model.fournisseur)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fournisseur)
+            </th>
 
-    -->
+        -->
 
 
         <th>
@@ -59,56 +67,67 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-    <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
-         <td>
-        @Html.DisplayFor(modelItem => item.Moyen.moyenCODE)
-        </td>
-     -->
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+            @Html.DisplayFor(modelItem => item.Moyen.moyenCODE)
+            </td>
+            
+            <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
+            <td>
+                @Html.DisplayFor(modelItem => item.exemplaireCODE)
+            </td>
+            -->
 
-        <td>
-            @Html.DisplayFor(modelItem => item.exemplaireCODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.designation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quantite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.suivi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.location)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prix)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.suivi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.location)
+            </td>
 
-        <!--
+            <!--
 
-        <td>
-            @Html.DisplayFor(modelItem => item.fournisseur)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fournisseur)
+                </td>
 
-    -->
+            -->
 
-        <td>
-            @Html.DisplayFor(modelItem => item.statut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date_ES)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date_FS)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.exemplaireID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.exemplaireID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.exemplaireID })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.statut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_ES)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_FS)
+            </td>
+
+            <td>
+                
+
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.exemplaireID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.exemplaireID }) |
+
+                @if(User.IsInRole("canEdit"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.exemplaireID })
+                }
+
+            </td>
+        </tr>
+    }
 
 </table>

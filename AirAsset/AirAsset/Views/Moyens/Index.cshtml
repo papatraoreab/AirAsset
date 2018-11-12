@@ -9,6 +9,17 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<!-- zone de recherche -->
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("Recherche")
+        <input type="submit" value="Search"/>
+    </p>
+}
+
+
 <table class="table">
     <tr>
         <th>
@@ -120,12 +131,17 @@
         </td>
 
     -->
-
-
+        
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.moyenID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.moyenID }) | 
             @Html.ActionLink("Details", "Details", new { id = item.moyenID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.moyenID })
+
+            @if (User.IsInRole("canEdit"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.moyenID })
+            }
+
+
         </td>
     </tr>
 }

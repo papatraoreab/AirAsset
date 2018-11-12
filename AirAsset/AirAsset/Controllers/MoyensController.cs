@@ -16,11 +16,20 @@ namespace AirAsset.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+        /* this default methods has been modified, replace by ViewResult Index()... methods (see below ViewResult Index()...) */
+
+
         // GET: Moyens
         public ActionResult Index()
         {
             return View(db.Moyens.ToList());
         }
+
+        
+
+
+       
 
         // GET: Moyens/Details/5
         public ActionResult Details(int? id)
@@ -218,5 +227,16 @@ namespace AirAsset.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+
+
+
+        //Adding a search method and search view
+
+        //updating the index form
+        
+        
     }
 }

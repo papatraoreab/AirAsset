@@ -22,9 +22,22 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Créer un moyen", "Create", "Moyens")</li>
+
+                    <!-- display to View only if the user has canEdit role-->
+                    @if (User.IsInRole("canEdit"))
+                    {
+                        <li>@Html.ActionLink("Créer un moyen", "Create", "Moyens")</li>
+                    }
+
+                    <!-- display to View only if the user has canEdit role-->
                     <li>@Html.ActionLink("Liste des moyens", "Index", "Moyens")</li>
-                    <li>@Html.ActionLink("Créer un exemplaire", "Create", "Exemplaires")</li>
+
+                    @if (User.IsInRole("canEdit"))
+                    {
+                        <li>@Html.ActionLink("Créer un exemplaire", "Create", "Exemplaires")</li>
+                    }
+
+
                     <li>@Html.ActionLink("Liste des exemplaires", "Index", "Exemplaires")</li>
                     <li>@Html.ActionLink("À propos de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
