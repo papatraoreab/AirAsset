@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AirAsset.Models;
+using PagedList.Mvc;
+using PagedList;
 
 namespace AirAsset.Controllers
 {
@@ -16,13 +18,24 @@ namespace AirAsset.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Exemplaires
+        /*
+        // GET: 
         //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com,ahmed.seghrouchni@airasset.com")]
         public ActionResult Index()
         {
             var exemplaires = db.Exemplaires.Include(e => e.Moyen);
             return View(exemplaires.ToList());
         }
+        */
+
+        // GET: Exemplaires
+        public ActionResult Index(string search, int? i)
+        {
+            List<Exemplaire> listtemp = db.Exemplaires.ToList();
+
+            return View(db.Exemplaires.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
+        }
+
 
         // GET: Exemplaires/Details/5
         //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com,ahmed.seghrouchni@airasset.com")]

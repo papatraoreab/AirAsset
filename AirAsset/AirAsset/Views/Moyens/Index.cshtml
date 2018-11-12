@@ -1,8 +1,11 @@
-﻿@model IEnumerable<AirAsset.Models.Moyen>
+﻿@model IPagedList<AirAsset.Models.Moyen>
 
 @{
     ViewBag.Title = "Index";
 }
+
+@using PagedList.Mvc;
+@using PagedList;
 
 <h2>Index</h2>
 
@@ -11,139 +14,144 @@
 </p>
 
 <!-- zone de recherche -->
-@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("Recherche")
-        <input type="submit" value="Search"/>
-    </p>
-}
+<p>
+    @using (Html.BeginForm("Index", "moyenSearch", FormMethod.Get))
+    {
+        <input type="text" name="search" placeholder="rechercher..." />
+        <input type="submit" name="search" value="Search" />
+    }
+</p>
+
 
 
 <table class="table">
+    @*added .First() to implemented pagination*@
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.moyenCODE)
+            @Html.DisplayNameFor(model => model.First().moyenCODE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.designation)
+            @Html.DisplayNameFor(model => model.First().designation)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.secteur)
+            @Html.DisplayNameFor(model => model.First().secteur)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.program)
+            @Html.DisplayNameFor(model => model.First().program)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.entrepot)
+            @Html.DisplayNameFor(model => model.First().entrepot)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.type)
+            @Html.DisplayNameFor(model => model.First().type)
         </th>
-
-
-
-    <!-- hiden display
-
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.poids)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cmu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hauteur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.longueur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.largeur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.vVent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.r_number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.t_number)
-        </th>
-    -->
-
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.moyenCODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.designation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.secteur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.program)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.entrepot)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.type)
-        </td>
 
 
 
         <!-- hiden display
 
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.poids)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cmu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hauteur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.longueur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.largeur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vVent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.r_number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.t_number)
-        </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().poids)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().cmu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().hauteur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().longueur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().largeur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().vVent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().r_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().t_number)
+            </th>
+        -->
 
-    -->
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.moyenID }) | 
-            @Html.ActionLink("Details", "Details", new { id = item.moyenID }) |
-
-            @if (User.IsInRole("canEdit"))
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.moyenID })
-            }
-
-
-        </td>
+        <th></th>
     </tr>
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.moyenCODE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.secteur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.program)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.entrepot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+
+
+
+            <!-- hiden display
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.poids)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cmu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hauteur)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.longueur)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.largeur)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vVent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.r_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_number)
+                </td>
+
+            -->
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.moyenID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.moyenID }) |
+
+                @if (User.IsInRole("canEdit"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.moyenID })
+                }
+
+
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model,i=>Url.Action("Index","Moyens", new { i,search=Request.QueryString["search"]})) @*added to implemented pagination*@

@@ -1,8 +1,11 @@
-﻿@model IEnumerable<AirAsset.Models.Exemplaire>
+﻿@model IPagedList<AirAsset.Models.Exemplaire>
 
 @{
     ViewBag.Title = "Index";
 }
+
+@using PagedList.Mvc;
+@using PagedList;
 
 <h2>Index</h2>
 
@@ -11,123 +14,126 @@
 </p>
 
 <!-- zone de recherche -->
-@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("Recherche")
-        <input type="submit" value="Search" />
-    </p>
-}
+<p>
+    @using (Html.BeginForm("Index", "exemplaireSearch", FormMethod.Get))
+    {
+        <input type="text" name="search" placeholder="rechercher..." />
+        <input type="submit" name="search" value="Search" />
+    }
+</p>
 
 <table class="table">
     <tr>
+    <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
         <th>
-            @Html.DisplayNameFor(model => model.Moyen.moyenCODE)
+            @Html.DisplayNameFor(model => model.First().Moyen.moyenCODE)
         </th>
-
-        <!-- hiden display,  replacing(model.moyenID,model.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
+    -->
+            <th>
+                @Html.DisplayNameFor(model => model.First().exemplaireCODE)
+            </th>
         <th>
-            @Html.DisplayNameFor(model => model.exemplaireCODE)
-        </th>
-        -->
-        <th>
-            @Html.DisplayNameFor(model => model.designation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.quantite)
+            @Html.DisplayNameFor(model => model.First().designation)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.prix)
+            @Html.DisplayNameFor(model => model.First().quantite)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.suivi)
+            @Html.DisplayNameFor(model => model.First().prix)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.location)
+            @Html.DisplayNameFor(model => model.First().suivi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().location)
         </th>
 
         <!-- hiden display
 
             <th>
-                @Html.DisplayNameFor(model => model.fournisseur)
+                @Html.DisplayNameFor(model => model.First().fournisseur)
             </th>
 
         -->
 
 
         <th>
-            @Html.DisplayNameFor(model => model.statut)
+            @Html.DisplayNameFor(model => model.First().statut)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date_ES)
+            @Html.DisplayNameFor(model => model.First().Date_ES)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date_FS)
+            @Html.DisplayNameFor(model => model.First().Date_FS)
         </th>
         <th></th>
+
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-            @Html.DisplayFor(modelItem => item.Moyen.moyenCODE)
-            </td>
-            
-            <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
-            <td>
-                @Html.DisplayFor(modelItem => item.exemplaireCODE)
-            </td>
-            -->
+    <tr>
+    <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
+              <td>
+                  @Html.DisplayFor(modelItem => item.Moyen.moyenCODE)
+              </td>
+    -->
 
-            <td>
-                @Html.DisplayFor(modelItem => item.designation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.quantite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prix)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.suivi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.location)
-            </td>
-
-            <!--
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.fournisseur)
-                </td>
-
-            -->
-
-            <td>
-                @Html.DisplayFor(modelItem => item.statut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date_ES)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date_FS)
-            </td>
-
-            <td>
-                
+        <td>
+            @Html.DisplayFor(modelItem => item.exemplaireCODE)
+        </td>
 
 
-                @Html.ActionLink("Edit", "Edit", new { id = item.exemplaireID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.exemplaireID }) |
+        <td>
+            @Html.DisplayFor(modelItem => item.designation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suivi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
 
-                @if(User.IsInRole("canEdit"))
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.exemplaireID })
-                }
+        <!--
 
-            </td>
-        </tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fournisseur)
+        </td>
+
+    -->
+
+        <td>
+            @Html.DisplayFor(modelItem => item.statut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_ES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_FS)
+        </td>
+
+        <td>
+
+
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.exemplaireID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.exemplaireID }) |
+
+            @if (User.IsInRole("canEdit"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.exemplaireID })
+            }
+
+        </td>
+    </tr>
     }
 
 </table>
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "Exemplaires", new { i, search = Request.QueryString["search"] }))

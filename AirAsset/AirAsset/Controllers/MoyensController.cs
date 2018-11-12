@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AirAsset.Models;
+using PagedList.Mvc;
+using PagedList;
 
 namespace AirAsset.Controllers
 {
@@ -16,20 +18,22 @@ namespace AirAsset.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
-        /* this default methods has been modified, replace by ViewResult Index()... methods (see below ViewResult Index()...) */
-
-
         // GET: Moyens
+        /*
         public ActionResult Index()
         {
             return View(db.Moyens.ToList());
         }
+        */
 
-        
+        // GET: Moyens
+        public ActionResult Index(string search, int? i)
+        {
+            List<Moyen> listtemp = db.Moyens.ToList();
 
+            return View(db.Moyens.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
+        }
 
-       
 
         // GET: Moyens/Details/5
         public ActionResult Details(int? id)
@@ -227,16 +231,5 @@ namespace AirAsset.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
-
-
-
-        //Adding a search method and search view
-
-        //updating the index form
-        
-        
     }
 }
