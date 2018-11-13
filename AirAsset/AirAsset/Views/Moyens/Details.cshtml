@@ -129,7 +129,10 @@
         <dd>
             @Html.DisplayFor(model => model.t_number)
         </dd>
-
+        
+        <dd> <hr /> </dd>
+        <dt></dt>
+        
         <!--print file, added to correct error, le nom 'FileType n'existe pas dans le context actuel, replace(FileType,AirAsset.Models.FileType ) -->
         @if (Model.Files.Any(f => f.FileType == AirAsset.Models.FileType.Capture))
 

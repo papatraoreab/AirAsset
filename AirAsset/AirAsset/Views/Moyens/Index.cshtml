@@ -13,74 +13,90 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
+<hr />
 <!-- zone de recherche -->
 <p>
-    @using (Html.BeginForm("Index", "moyenSearch", FormMethod.Get))
+    Recherche par Désignation:
+    @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
     {
-        <input type="text" name="search" placeholder="rechercher..." />
+        <input type="text" name="search" placeholder="tapez votre recherche..." />
         <input type="submit" name="search" value="Search" />
     }
+    
+    @Html.ActionLink("Réinitialiser recherche", "Index")
 </p>
 
-
-
 <table class="table">
-    @*added .First() to implemented pagination*@
+
+    @using (Html.BeginForm("Index","Exemplaires", FormMethod.Get))
+    {
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().moyenCODE)
+            @Html.ActionLink("Code Moyen", "Index", new { SortOrder = ViewBag.moyenCode })
+        </th>
+
+
+
+        <th>
+            @Html.ActionLink("Désignation", "Index", new { SortOrder = ViewBag.designation })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().designation)
+            @Html.ActionLink("Secteur", "Index", new { SortOrder = ViewBag.secteur })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().secteur)
+            @Html.ActionLink("Programme", "Index", new { SortOrder = ViewBag.program })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().program)
+            @Html.ActionLink("Entre ou Ligne", "Index", new { SortOrder = ViewBag.entrepotouligne })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().entrepot)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().type)
+            @Html.ActionLink("Type", "Index", new { SortOrder = ViewBag.type })
         </th>
 
 
 
         <!-- hiden display
 
-            <th>
-                @Html.DisplayNameFor(model => model.First().description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().poids)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().cmu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().hauteur)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().longueur)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().largeur)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().vVent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().r_number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().t_number)
-            </th>
-        -->
+        <th>
+            @Html.DisplayNameFor(model => model.First().description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().poids)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().cmu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().hauteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().longueur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().largeur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().vVent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().r_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().t_number)
+        </th>
+    -->
 
         <th></th>
     </tr>
+
+
+
+
+
+
+    }
+
+    
 
     @foreach (var item in Model)
     {

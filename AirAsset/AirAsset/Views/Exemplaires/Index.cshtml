@@ -12,126 +12,133 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-
+<hr />
 <!-- zone de recherche -->
 <p>
-    @using (Html.BeginForm("Index", "exemplaireSearch", FormMethod.Get))
+    Recherche par Désignation:
+    @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
     {
-        <input type="text" name="search" placeholder="rechercher..." />
+        @*<label>Recherche par Désignation:</label>*@
+        <input type="text" name="search" placeholder="tapez votre recherche..." />
         <input type="submit" name="search" value="Search" />
     }
+
+    @Html.ActionLink("Réinitialiser recherche", "Index")
 </p>
 
 <table class="table">
+
+    @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
+    {
     <tr>
-    <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
+        <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
         <th>
             @Html.DisplayNameFor(model => model.First().Moyen.moyenCODE)
         </th>
     -->
-            <th>
-                @Html.DisplayNameFor(model => model.First().exemplaireCODE)
-            </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().designation)
+            @Html.ActionLink("Code Exemplaire", "Index", new { SortOrder = ViewBag.exemplaireCode })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().quantite)
+            @Html.ActionLink("Désignation", "Index", new { SortOrder = ViewBag.designation })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().prix)
+            @Html.ActionLink("Quantité", "Index", new { SortOrder = ViewBag.quantite })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().suivi)
+            @Html.ActionLink("Prix", "Index", new { SortOrder = ViewBag.prix })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().location)
+            @Html.ActionLink("Suivi", "Index", new { SortOrder = ViewBag.suivi })
+        </th>
+        <th>
+            @Html.ActionLink("Localisation", "Index", new { SortOrder = ViewBag.location })
         </th>
 
-        <!-- hiden display
-
-            <th>
-                @Html.DisplayNameFor(model => model.First().fournisseur)
-            </th>
-
-        -->
-
+    <!-- hiden display
 
         <th>
-            @Html.DisplayNameFor(model => model.First().statut)
+            @Html.ActionLink("Fournisseur", "Index", new { SortOrder = ViewBag.fournisseur })
+        </th>
+
+    -->
+        <th>
+            @Html.ActionLink("Statut", "Index", new { SortOrder = ViewBag.statut })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Date_ES)
+            @Html.ActionLink("Date d'Entrée en Service", "Index", new { SortOrder = ViewBag.date_es })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Date_FS)
+            @Html.ActionLink("Date de Fin de Service", "Index", new { SortOrder = ViewBag.date_fs })
         </th>
         <th></th>
 
     </tr>
+    }
+
 
     @foreach (var item in Model)
     {
-    <tr>
-    <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
-              <td>
-                  @Html.DisplayFor(modelItem => item.Moyen.moyenCODE)
-              </td>
-    -->
+        <tr>
+            <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Moyen.moyenCODE)
+                        </td>
+            -->
 
-        <td>
-            @Html.DisplayFor(modelItem => item.exemplaireCODE)
-        </td>
-
-
-        <td>
-            @Html.DisplayFor(modelItem => item.designation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quantite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.suivi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.location)
-        </td>
-
-        <!--
-
-        <td>
-            @Html.DisplayFor(modelItem => item.fournisseur)
-        </td>
-
-    -->
-
-        <td>
-            @Html.DisplayFor(modelItem => item.statut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date_ES)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date_FS)
-        </td>
-
-        <td>
+            <td>
+                @Html.DisplayFor(modelItem => item.exemplaireCODE)
+            </td>
 
 
+            <td>
+                @Html.DisplayFor(modelItem => item.designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prix)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.suivi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.location)
+            </td>
 
-            @Html.ActionLink("Edit", "Edit", new { id = item.exemplaireID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.exemplaireID }) |
+            <!--
 
-            @if (User.IsInRole("canEdit"))
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.exemplaireID })
-            }
+                <td>
+                    @Html.DisplayFor(modelItem => item.fournisseur)
+                </td>
 
-        </td>
-    </tr>
+            -->
+
+            <td>
+                @Html.DisplayFor(modelItem => item.statut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_ES)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_FS)
+            </td>
+
+            <td>
+
+
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.exemplaireID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.exemplaireID }) |
+
+                @if (User.IsInRole("canEdit"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.exemplaireID })
+                }
+
+            </td>
+        </tr>
     }
 
 </table>

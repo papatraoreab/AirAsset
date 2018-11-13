@@ -221,6 +221,22 @@
     <Compile Include="Migrations\201811121558528_InitialAirAsset1.Designer.cs">
       <DependentUpon>201811121558528_InitialAirAsset1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811130941331_InitialAirAsset2.cs" />
+    <Compile Include="Migrations\201811130941331_InitialAirAsset2.Designer.cs">
+      <DependentUpon>201811130941331_InitialAirAsset2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811130952485_InitialAirAsset3.cs" />
+    <Compile Include="Migrations\201811130952485_InitialAirAsset3.Designer.cs">
+      <DependentUpon>201811130952485_InitialAirAsset3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811131021120_InitialAirAsset4.cs" />
+    <Compile Include="Migrations\201811131021120_InitialAirAsset4.Designer.cs">
+      <DependentUpon>201811131021120_InitialAirAsset4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811131038376_InitialAirAsset5.cs" />
+    <Compile Include="Migrations\201811131038376_InitialAirAsset5.Designer.cs">
+      <DependentUpon>201811131038376_InitialAirAsset5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -258,6 +274,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -342,6 +359,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811121558528_InitialAirAsset1.resx">
       <DependentUpon>201811121558528_InitialAirAsset1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811130941331_InitialAirAsset2.resx">
+      <DependentUpon>201811130941331_InitialAirAsset2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811130952485_InitialAirAsset3.resx">
+      <DependentUpon>201811130952485_InitialAirAsset3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131021120_InitialAirAsset4.resx">
+      <DependentUpon>201811131021120_InitialAirAsset4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131038376_InitialAirAsset5.resx">
+      <DependentUpon>201811131038376_InitialAirAsset5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

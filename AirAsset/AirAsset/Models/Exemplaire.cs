@@ -70,8 +70,7 @@ namespace AirAsset.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date_FS { get; set; }
-
-
+       
         //collection à afficher dans le formulaire
 
         //Liste des Suivis
@@ -102,7 +101,7 @@ namespace AirAsset.Models
             StatutListe = app.StatutListe;
 
             //Init des champs du formulaires
-            exemplaireCODE = "XX0000-000000";
+            exemplaireCODE = "XX0000";
             designation = "désignation du moyen";
             quantite = 1;
             prix = calculPrix(quantite,prix);

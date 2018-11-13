@@ -29,11 +29,82 @@ namespace AirAsset.Controllers
         */
 
         // GET: Exemplaires
-        public ActionResult Index(string search, int? i)
+        public ActionResult Index(string search, int? i, string SortOrder)
         {
-            List<Exemplaire> listtemp = db.Exemplaires.ToList();
+            ViewBag.exemplaireCode = String.IsNullOrEmpty(SortOrder) ? "exemplairecode_desc" : "";
+            ViewBag.designation = SortOrder == "designation" ? "designation_desc" : "designation";
+            ViewBag.quantite = SortOrder == "quantite" ? "quantite_desc" : "quantite";
+            ViewBag.prix = SortOrder == "prix" ? "prix_desc" : "prix";
+            ViewBag.suivi = SortOrder == "suivi" ? "suivi_desc" : "suivi";
+            ViewBag.location = SortOrder == "location" ? "location_desc" : "location";
+            ViewBag.statut = SortOrder == "statut" ? "statut_desc" : "statut";
+            ViewBag.date_es = SortOrder == "date_es" ? "date_es_desc" : "date_es";
+            ViewBag.date_fs = SortOrder == "date_fs" ? "date_fs_desc" : "date_fs";
 
-            return View(db.Exemplaires.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
+            var exemplaire = from e in db.Exemplaires select e;
+
+            switch (SortOrder)
+            {
+                case "exemplairecode_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.exemplaireCODE);
+                    break;
+                case "designation":
+                    exemplaire = exemplaire.OrderBy(e => e.designation);
+                    break;
+                case "designation_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.designation);
+                    break;
+
+                case "quantite":
+                    exemplaire = exemplaire.OrderBy(e => e.quantite);
+                    break;
+                case "quantite_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.quantite);
+                    break;
+                case "prix":
+                    exemplaire = exemplaire.OrderBy(e => e.prix);
+                    break;
+                case "prix_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.prix);
+                    break;
+                case "suivi":
+                    exemplaire = exemplaire.OrderBy(e => e.suivi);
+                    break;
+                case "suivi_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.suivi);
+                    break;
+                case "location":
+                    exemplaire = exemplaire.OrderBy(e => e.location);
+                    break;
+                case "location_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.location);
+                    break;
+                case "statut":
+                    exemplaire = exemplaire.OrderBy(e => e.statut);
+                    break;
+                case "statut_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.statut);
+                    break;
+                case "date_es":
+                    exemplaire = exemplaire.OrderBy(e => e.Date_ES);
+                    break;
+                case "date_es_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.Date_ES);
+                    break;
+                case "date_fs":
+                    exemplaire = exemplaire.OrderBy(e => e.Date_FS);
+                    break;
+                case "date_fs_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.Date_FS);
+                    break;
+                    
+                default:
+                    exemplaire = exemplaire.OrderBy(e => e.exemplaireCODE);
+                    break;
+
+            }
+
+            return View(exemplaire.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
         }
 
 
@@ -252,6 +323,18 @@ namespace AirAsset.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        //Research 
+        public ActionResult Research(string search)
+        {
+            var exemplaires = from m in db.Exemplaires select m;
+            if (!String.IsNullOrEmpty(search))
+            {
+                exemplaires = exemplaires.Where(m => m.designation.Contains(search));
+            }
+            return View(exemplaires.ToList());
         }
     }
 }

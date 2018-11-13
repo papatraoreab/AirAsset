@@ -27,13 +27,66 @@ namespace AirAsset.Controllers
         */
 
         // GET: Moyens
-        public ActionResult Index(string search, int? i)
+        public ActionResult Index(string search, int? i, string SortOrder)
         {
-            List<Moyen> listtemp = db.Moyens.ToList();
+            ViewBag.moyenCode = String.IsNullOrEmpty(SortOrder) ? "moyencode_desc" : "";
+            ViewBag.designation = SortOrder == "designation" ? "designation_desc" : "designation";
+            ViewBag.secteur = SortOrder == "secteur" ? "secteur_desc" : "secteur";
+            ViewBag.program = SortOrder == "program" ? "program_desc" : "program";
+            ViewBag.entrepotouligne = SortOrder == "entrepotouligne" ? "entrepotouligne_desc" : "entrepotouligne";
+            ViewBag.type = SortOrder == "type" ? "type_desc" : "type";
 
-            return View(db.Moyens.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
+            var moyen = from m in db.Moyens select m;
+
+
+            switch (SortOrder)
+            {
+                case "moyencode_desc":
+                    moyen = moyen.OrderByDescending(m => m.moyenCODE);
+                    break;
+                case "designation":
+                    moyen = moyen.OrderBy(m => m.designation);
+                    break;
+                case "designation_desc":
+                    moyen = moyen.OrderByDescending(m => m.designation);
+                    break;
+
+                case "secteur":
+                    moyen = moyen.OrderBy(m => m.secteur);
+                    break;
+                case "secteur_desc":
+                    moyen = moyen.OrderByDescending(m => m.secteur);
+                    break;
+
+                case "program":
+                    moyen = moyen.OrderBy(m => m.program);
+                    break;
+                case "program_desc":
+                    moyen = moyen.OrderByDescending(m => m.program);
+                    break;
+
+                case "entrepotouligne":
+                    moyen = moyen.OrderBy(m => m.entrepot);
+                    break;
+                case "entrepotouligne_desc":
+                    moyen = moyen.OrderByDescending(m => m.entrepot);
+                    break;
+
+                case "type":
+                    moyen = moyen.OrderBy(m => m.type);
+                    break;
+                case "type_desc":
+                    moyen = moyen.OrderByDescending(m => m.type);
+                    break;
+
+                default:
+                    moyen = moyen.OrderBy(m => m.moyenCODE);
+                    break;
+
+            }
+
+            return View(moyen.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
         }
-
 
         // GET: Moyens/Details/5
         public ActionResult Details(int? id)
@@ -231,5 +284,18 @@ namespace AirAsset.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        //Research 
+        public ActionResult Research(string search)
+        {
+            var moyens = from m in db.Moyens select m;
+            if (!String.IsNullOrEmpty(search))
+            {
+                moyens = moyens.Where(m => m.designation.Contains(search));
+            }
+            return View(moyens.ToList());
+        }
+
     }
 }
