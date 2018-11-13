@@ -101,10 +101,9 @@ namespace AirAsset.Controllers
                 default:
                     exemplaire = exemplaire.OrderBy(e => e.exemplaireCODE);
                     break;
-
             }
 
-            return View(exemplaire.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
+            return View(exemplaire.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 5)); //pagination
         }
 
 

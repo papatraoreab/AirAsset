@@ -5,8 +5,8 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
+<div class="form-horizontal">
+    <div class="jumbotron">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
@@ -43,12 +43,12 @@
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("S'inscrire comme nouvel utilisateur", "Register")
+                    <h6>@Html.ActionLink("S'inscrire comme nouvel utilisateur", "Register")</h6>
                 </p>
                 @* Activer ceci une fois que la confirmation de votre compte est activée pour la fonctionnalité de réinitialisation du mot de passe,
                     ACTIVE LE 09/11/2017 pour test *@
                 <p>
-                    @Html.ActionLink("Vous avez oublié votre mot de passe ?", "ForgotPassword")
+                    <h6>@Html.ActionLink("Vous avez oublié votre mot de passe ?", "ForgotPassword")</h6>  
                 </p>
             }
         </section>
@@ -62,7 +62,7 @@
             </section>
         </div>
     -->
-    </div>
+</div>
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

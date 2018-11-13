@@ -85,7 +85,7 @@ namespace AirAsset.Controllers
 
             }
 
-            return View(moyen.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
+            return View(moyen.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 5)); //pagination
         }
 
         // GET: Moyens/Details/5

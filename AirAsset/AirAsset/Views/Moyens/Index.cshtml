@@ -15,159 +15,152 @@
 
 <hr />
 <!-- zone de recherche -->
-<p>
+<div class="jumbotron">
     Recherche par Désignation:
     @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
     {
         <input type="text" name="search" placeholder="tapez votre recherche..." />
         <input type="submit" name="search" value="Search" />
     }
-    
+
     @Html.ActionLink("Réinitialiser recherche", "Index")
-</p>
 
-<table class="table">
+</div>
+<hr />
 
-    @using (Html.BeginForm("Index","Exemplaires", FormMethod.Get))
-    {
-    <tr>
-        <th>
-            @Html.ActionLink("Code Moyen", "Index", new { SortOrder = ViewBag.moyenCode })
-        </th>
+<div class="jumbotron">
+    <table class="table">
 
-
-
-        <th>
-            @Html.ActionLink("Désignation", "Index", new { SortOrder = ViewBag.designation })
-        </th>
-        <th>
-            @Html.ActionLink("Secteur", "Index", new { SortOrder = ViewBag.secteur })
-        </th>
-        <th>
-            @Html.ActionLink("Programme", "Index", new { SortOrder = ViewBag.program })
-        </th>
-        <th>
-            @Html.ActionLink("Entre ou Ligne", "Index", new { SortOrder = ViewBag.entrepotouligne })
-        </th>
-        <th>
-            @Html.ActionLink("Type", "Index", new { SortOrder = ViewBag.type })
-        </th>
+        @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
+        {
+            <tr>
+                <th>
+                    @Html.ActionLink("Code Moyen", "Index", new { SortOrder = ViewBag.moyenCode })
+                </th>
 
 
 
-        <!-- hiden display
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().poids)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().cmu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().hauteur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().longueur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().largeur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().vVent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().r_number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().t_number)
-        </th>
-    -->
-
-        <th></th>
-    </tr>
+                <th>
+                    @Html.ActionLink("Désignation", "Index", new { SortOrder = ViewBag.designation })
+                </th>
+                <th>
+                    @Html.ActionLink("Secteur", "Index", new { SortOrder = ViewBag.secteur })
+                </th>
+                <th>
+                    @Html.ActionLink("Programme", "Index", new { SortOrder = ViewBag.program })
+                </th>
+                <th>
+                    @Html.ActionLink("Entre ou Ligne", "Index", new { SortOrder = ViewBag.entrepotouligne })
+                </th>
+                <th>
+                    @Html.ActionLink("Type", "Index", new { SortOrder = ViewBag.type })
+                </th>
 
 
 
+                <!-- hiden display
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().poids)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().cmu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().hauteur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().longueur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().largeur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().vVent)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().r_number)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().t_number)
+                    </th>
+                -->
+
+                <th></th>
+            </tr>
+        }
 
 
 
-    }
-
-    
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.moyenCODE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.designation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.secteur)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.program)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.entrepot)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.type)
-            </td>
-
-
-
-            <!-- hiden display
-
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.description)
+                    @Html.DisplayFor(modelItem => item.moyenCODE)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.poids)
+                    @Html.DisplayFor(modelItem => item.designation)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.cmu)
+                    @Html.DisplayFor(modelItem => item.secteur)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.hauteur)
+                    @Html.DisplayFor(modelItem => item.program)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.longueur)
+                    @Html.DisplayFor(modelItem => item.entrepot)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.largeur)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.vVent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.r_number)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.t_number)
+                    @Html.DisplayFor(modelItem => item.type)
                 </td>
 
-            -->
+                <!-- hiden display
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.poids)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cmu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.hauteur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.longueur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.largeur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.vVent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.r_number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.t_number)
+                    </td>
+                -->
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.moyenID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.moyenID }) |
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.moyenID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.moyenID }) |
+                    @if (User.IsInRole("canEdit"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.moyenID })
+                    }
+                </td>
+            </tr>
+        }
 
-                @if (User.IsInRole("canEdit"))
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.moyenID })
-                }
+    </table>
 
-
-            </td>
-        </tr>
-    }
-
-</table>
+</div>
+<hr />
 
 @Html.PagedListPager(Model,i=>Url.Action("Index","Moyens", new { i,search=Request.QueryString["search"]})) @*added to implemented pagination*@

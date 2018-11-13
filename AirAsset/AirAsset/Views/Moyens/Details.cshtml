@@ -6,7 +6,7 @@
 
 <h2>Details</h2>
 
-<div>
+<div class="jumbotron">
     <h4>Moyen</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -129,10 +129,13 @@
         <dd>
             @Html.DisplayFor(model => model.t_number)
         </dd>
-        
-        <dd> <hr /> </dd>
-        <dt></dt>
-        
+    </dl>
+</div>
+
+
+<div>
+    
+    <dl class="dl-horizontal">
         <!--print file, added to correct error, le nom 'FileType n'existe pas dans le context actuel, replace(FileType,AirAsset.Models.FileType ) -->
         @if (Model.Files.Any(f => f.FileType == AirAsset.Models.FileType.Capture))
 
@@ -143,10 +146,15 @@
             <dd>
                 <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Capture).fileId" alt="capture" /> <!-- voir -->
             </dd>
+
+            <dt>  </dt>
+            <dd>  <hr /> </dd>
         }
 
     </dl>
+
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.moyenID }) | 
     @Html.ActionLink("Back to List", "Index")
