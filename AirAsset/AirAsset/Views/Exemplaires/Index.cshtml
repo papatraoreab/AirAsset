@@ -15,17 +15,18 @@
 <hr />
 <div class="jumbotron">
     <!-- zone de recherche -->
-        Recherche par Désignation:
-        @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
-        {
-            @*<label>Recherche par Désignation:</label>*@
-            <input type="text" name="search" placeholder="tapez votre recherche..." />
-            <input type="submit" name="search" value="Search" />
-        }
+    Recherche par Désignation:
+    @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
+    {
+        @*<label>Recherche par Désignation:</label>*@
+        <input type="text" name="search" placeholder="tapez votre recherche..." />
+        <input type="submit" name="search" value="Search" />
+    }
 
-        @Html.ActionLink("Réinitialiser recherche", "Index")
+    @Html.ActionLink("Réinitialiser recherche", "Index")
 </div>
 <hr />
+@Html.ActionLink("Exporter", "exportToCsv")
 <div class="jumbotron">
     <table class="table">
 
@@ -145,6 +146,7 @@
     </table>
 
 </div>
+
 <hr />
 
 @Html.PagedListPager(Model, i => Url.Action("Index", "Exemplaires", new { i, search = Request.QueryString["search"] }))

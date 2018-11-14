@@ -14,8 +14,7 @@ namespace AirAsset.Models
     {
         //[ScaffoldColumn(false)]// masque les champs de formulaire de l'éditeur
         public int exemplaireID { get; set; }
-
-
+        
         public virtual int moyenID { get; set; }
         public Moyen Moyen { get; set; }
 
@@ -104,20 +103,13 @@ namespace AirAsset.Models
             exemplaireCODE = "XX0000";
             designation = "désignation du moyen";
             quantite = 1;
-            prix = calculPrix(quantite,prix);
+            prix = 0;
             suivi = "1";
             location = "1";
             fournisseur = "nom du fournisseur";
             statut = "1";
         }
 
-
-        public double calculPrix(int quantite, double prix)
-        {
-            this.prix = prix;
-            this.quantite = quantite;
-            double res = (double)prix * quantite;
-            return res;
-        }
+        
     }
 }

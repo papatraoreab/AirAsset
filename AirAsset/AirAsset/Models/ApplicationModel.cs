@@ -33,19 +33,19 @@ namespace AirAsset.Models
             //Init Entrepot 
             EntrepotListe = new Item[]
             {
-                new Item {Value = "1", Label = "Assemblage Général"},
+                new Item {Value = "1", Label = "Assemblage General"},
                 new Item {Value = "2", Label = "Assemblage S/E"},
                 new Item {Value = "3", Label = "Finition"},
                 new Item {Value = "4", Label = "Magasin Consommables (W20)"},
                 new Item {Value = "5", Label = "Magasin Equipement (W15G)"},
-                new Item {Value = "6", Label = "Magasin Matières Composites (M0)"},
-                new Item {Value = "7", Label = "Magasin Matières Dangereuses (032)"},
-                new Item {Value = "8", Label = "Magasin Matières Métalliques (F07 + Parc)"},
+                new Item {Value = "6", Label = "Magasin Matieres Composites (M0)"},
+                new Item {Value = "7", Label = "Magasin Matieres Dangereuses (032)"},
+                new Item {Value = "8", Label = "Magasin Matieres Metalliques (F07 + Parc)"},
                 new Item {Value = "9", Label = "Magasin Outils Coupants (C12)"},
-                new Item {Value = "10", Label = "Market Place Grandes Pièces (I05)"},
-                new Item {Value = "11", Label = "Market Place Petites Pièces (W15D)"},
-                new Item {Value = "12", Label = "Pièces Elémentaires Composites"},
-                new Item {Value = "13", Label = "Pièces Elémentaires Métalliques"},
+                new Item {Value = "10", Label = "Market Place Grandes Pieces (I05)"},
+                new Item {Value = "11", Label = "Market Place Petites Pieces (W15D)"},
+                new Item {Value = "12", Label = "Pieces Elementaires Composites"},
+                new Item {Value = "13", Label = "Pieces Elementaires Metalliques"},
                 new Item {Value = "14", Label = "Autres"}
             };
 
@@ -107,10 +107,10 @@ namespace AirAsset.Models
             //Init Statut 
             StatutListe = new Item[]
             {
-                new Item {Value = "1", Label = "Stocké"},
+                new Item {Value = "1", Label = "Stocke"},
                 new Item {Value = "2", Label = "En Service"},
                 new Item {Value = "3", Label = "En Maintenace"},
-                new Item {Value = "4", Label = "Détruit"}
+                new Item {Value = "4", Label = "Detruit"}
             };
 
 
@@ -125,11 +125,11 @@ namespace AirAsset.Models
             //Init Type 
             TypeListe = new Item[]
             {
-                new Item {Value = "1", Label = "Bâche"},
+                new Item {Value = "1", Label = "Bache"},
                 new Item {Value = "2", Label = "Caisse"},
                 new Item {Value = "3", Label = "Chariot"},
                 new Item {Value = "4", Label = "Congélateur"},
-                new Item {Value = "5", Label = "Etagère"},
+                new Item {Value = "5", Label = "Etagere"},
                 new Item {Value = "6", Label = "Ferrure"},
                 new Item {Value = "7", Label = "Micro-Ondes"},
                 new Item {Value = "8", Label = "Palettier"},

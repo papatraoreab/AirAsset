@@ -297,5 +297,45 @@ namespace AirAsset.Controllers
             return View(moyens.ToList());
         }
 
+
+        //mooyens export
+        public void exportToCsv()
+        {
+            System.IO.StringWriter sw = new System.IO.StringWriter();
+
+            sw.WriteLine("\"Code Moyen\",\"Designation\",\"Secteur\",\"Programme\",\"Entrepot ou Ligne\",\"Type\",\"Description\",\"Poids\",\"CMU\"," +
+                "\"Hauteur\",\"Longueur\",\"Largeur\",\"Vitesse du Vent\",\"RUS Number\",\"Tool Number\"");
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment;filename=exportedMoyens.csv");
+            Response.ContentType = "text/csv";
+
+            var moyens = db.Moyens;
+
+            foreach (var moyen in moyens)
+            {
+                sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\",\"{14}\"",
+
+                moyen.moyenCODE,
+                moyen.designation,
+                moyen.secteur,
+                moyen.program,
+                moyen.entrepot,
+                moyen.type,
+                moyen.description,
+                moyen.poids,
+                moyen.cmu,
+                moyen.hauteur,
+                moyen.longueur,
+                moyen.largeur,
+                moyen.vVent,
+                moyen.r_number,
+                moyen.t_number)
+                );
+            }
+            Response.Write(sw.ToString());
+            Response.End();
+        }
+
     }
 }

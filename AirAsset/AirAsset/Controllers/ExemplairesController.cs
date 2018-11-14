@@ -335,5 +335,41 @@ namespace AirAsset.Controllers
             }
             return View(exemplaires.ToList());
         }
+
+        //Export  data to csv
+
+        public void exportToCsv()
+        {
+            System.IO.StringWriter sw = new System.IO.StringWriter();
+
+            sw.WriteLine("\"Code Exemplaire\",\"Designation\",\"Quantite\",\"Prix\",\"Suivi\",\"Localisation\",\"Statut\",\"Entree en Service\",\"Fin de Service\"");
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment;filename=exportedExemplaires.csv");
+            Response.ContentType = "text/csv";
+
+            var exemplaires = db.Exemplaires;
+
+            foreach (var exemplaire in exemplaires)
+            {
+                sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\"",
+
+                exemplaire.exemplaireCODE,
+                exemplaire.designation,
+                exemplaire.quantite,
+                exemplaire.prix,
+                exemplaire.suivi,
+                exemplaire.location,
+                exemplaire.statut,
+                exemplaire.Date_ES,
+                exemplaire.Date_FS)
+                );
+            }
+            Response.Write(sw.ToString());
+            Response.End();
+        }
+
+
+        
     }
 }

@@ -27,7 +27,7 @@
 
 </div>
 <hr />
-
+@Html.ActionLink("Exporter", "exportToCsv")
 <div class="jumbotron">
     <table class="table">
 
@@ -50,7 +50,7 @@
                     @Html.ActionLink("Programme", "Index", new { SortOrder = ViewBag.program })
                 </th>
                 <th>
-                    @Html.ActionLink("Entre ou Ligne", "Index", new { SortOrder = ViewBag.entrepotouligne })
+                    @Html.ActionLink("Entrepot ou Ligne", "Index", new { SortOrder = ViewBag.entrepotouligne })
                 </th>
                 <th>
                     @Html.ActionLink("Type", "Index", new { SortOrder = ViewBag.type })
@@ -163,4 +163,4 @@
 </div>
 <hr />
 
-@Html.PagedListPager(Model,i=>Url.Action("Index","Moyens", new { i,search=Request.QueryString["search"]})) @*added to implemented pagination*@
+@Html.PagedListPager(Model, i => Url.Action("Index", "Moyens", new { i, search = Request.QueryString["search"] })) @*added to implemented pagination*@

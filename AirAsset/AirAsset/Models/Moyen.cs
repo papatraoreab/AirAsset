@@ -129,7 +129,7 @@ namespace AirAsset.Models
             program = "1";
             entrepot = "1";
             type = "1";
-            description = "Ligne1\nLigne2";
+            description = "Ligne1 Ligne2";
             poids = 0;
             cmu = 0;
             hauteur = 0;
