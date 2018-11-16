@@ -12,10 +12,10 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-
 <hr />
+
 <!-- zone de recherche -->
-<div class="jumbotron">
+<div>
     Recherche par Désignation:
     @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
     {
@@ -27,18 +27,20 @@
 
 </div>
 <hr />
-@Html.ActionLink("Exporter", "exportToCsv")
-<div class="jumbotron">
+
+@if (User.IsInRole("canEdit"))
+{
+    @Html.ActionLink("Exporter", "exportToCsv")
+}
+<div>
     <table class="table">
 
         @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
         {
-            <tr>
+            <tr class="jumbotron">
                 <th>
                     @Html.ActionLink("Code Moyen", "Index", new { SortOrder = ViewBag.moyenCode })
                 </th>
-
-
 
                 <th>
                     @Html.ActionLink("Désignation", "Index", new { SortOrder = ViewBag.designation })
@@ -97,7 +99,7 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+            <tr  class="jumbotron">
                 <td>
                     @Html.DisplayFor(modelItem => item.moyenCODE)
                 </td>

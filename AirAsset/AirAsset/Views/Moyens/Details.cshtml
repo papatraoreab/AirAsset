@@ -1,15 +1,15 @@
 ﻿@model AirAsset.Models.Moyen
-
+<link rel="stylesheet" type="text/css" href="~/Content/style_dd_image.css">
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
-<div class="jumbotron">
+<div class="dl-horizontal">
     <h4>Moyen</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="jumbotron">
         <dt>
             @Html.DisplayNameFor(model => model.moyenCODE)
         </dt>
@@ -132,30 +132,22 @@
     </dl>
 </div>
 
-
-<div>
-    
-    <dl class="dl-horizontal">
-        <!--print file, added to correct error, le nom 'FileType n'existe pas dans le context actuel, replace(FileType,AirAsset.Models.FileType ) -->
-        @if (Model.Files.Any(f => f.FileType == AirAsset.Models.FileType.Capture))
-
-        {
-            <dt>
-                Capture
-            </dt>
-            <dd>
-                <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Capture).fileId" alt="capture" /> <!-- voir -->
-            </dd>
-
-            <dt>  </dt>
-            <dd>  <hr /> </dd>
-        }
-
-    </dl>
+<div class="dropdown"> <!-- dropdown image -->
+    <!--print file, added to correct error, le nom 'FileType n'existe pas dans le context actuel, replace(FileType,AirAsset.Models.FileType ) -->
+    @if (Model.Files.Any(f => f.FileType == AirAsset.Models.FileType.Capture))
+    {
+        
+        <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Capture).fileId" alt="capture" width="200" height="150" />
+        <div class="dropdown-content">
+            <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Capture).fileId" alt="capture" width="600" height="300" />
+            <div class="desc">Capture du moyen</div>
+        </div>
+    }
 
 </div>
 
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.moyenID }) | 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.moyenID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

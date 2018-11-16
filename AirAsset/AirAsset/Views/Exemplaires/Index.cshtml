@@ -13,8 +13,9 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <hr />
-<div class="jumbotron">
-    <!-- zone de recherche -->
+
+<!-- zone de recherche -->
+<div>
     Recherche par Désignation:
     @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
     {
@@ -26,13 +27,19 @@
     @Html.ActionLink("Réinitialiser recherche", "Index")
 </div>
 <hr />
-@Html.ActionLink("Exporter", "exportToCsv")
-<div class="jumbotron">
+
+@if (User.IsInRole("canEdit"))
+{
+    @Html.ActionLink("Exporter", "exportToCsv")
+}
+
+
+<div>
     <table class="table">
 
         @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
         {
-            <tr>
+            <tr class="jumbotron">
                 <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
                     <th>
                         @Html.DisplayNameFor(model => model.First().Moyen.moyenCODE)
@@ -81,7 +88,7 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="jumbotron">
                 <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index
                             <td>
                                 @Html.DisplayFor(modelItem => item.Moyen.moyenCODE)

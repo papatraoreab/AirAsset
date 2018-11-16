@@ -8,6 +8,7 @@ namespace AirAsset.Models
 {
     public class File
     {
+        [Key]
         public int fileId { get; set; }
         [StringLength(255)]
         public string fileName { get; set; }
