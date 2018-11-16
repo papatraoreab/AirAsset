@@ -22,7 +22,7 @@
     #menu-deroulant a {
         text-decoration: none;
         display: block;
-        color: white;
+        color: darkgrey; /*text button bar color */
     }
 
     #menu-deroulant ul {
@@ -44,26 +44,26 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #202020;
+    background-color: #202020; /*container bar color */
 }
 
 li {
     float: left;
 }
 
-    li a {
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+    li a:hover {
+        background-color: white; /*button bar color */
     }
 
-        li a:hover{
-            background-color: darkgray;
-        }
-
-    li.dropdown {
-        display: inline-block;
-    }
+li.dropdown {
+display: inline-block;
+}
 
