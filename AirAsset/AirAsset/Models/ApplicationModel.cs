@@ -208,19 +208,22 @@ namespace AirAsset.Models
             TypeListe = new Item[]
             {
                 new Item {Value = "1", Label = "Bache"},
-                new Item {Value = "2", Label = "Palonnier"},
-                new Item {Value = "3", Label = "Ferrure"},
-                new Item {Value = "4", Label = "Supply point"},
-                new Item {Value = "5", Label = "Congelateur"},
-                new Item {Value = "6", Label = "Micro-ondes"},
-                new Item {Value = "7", Label = "Palettier"},
-                new Item {Value = "8", Label = "Etagere"},
-                new Item {Value = "9", Label = "Raletier"},
-                new Item {Value = "10", Label = "Cantilever"},
-                new Item {Value = "11", Label = "Jig Transport"},
-                new Item {Value = "12", Label = "Rack dynamique"},
-                new Item {Value = "13", Label = "Remorque"},
-                new Item {Value = "14", Label = "Roll"}
+                new Item {Value = "2", Label = "Caisse"},
+                new Item {Value = "3", Label = "Chariot"},
+                new Item {Value = "4", Label = "Traine"},
+                new Item {Value = "5", Label = "Palonnier"},
+                new Item {Value = "6", Label = "Ferrure"},
+                new Item {Value = "7", Label = "Supply point"},
+                new Item {Value = "8", Label = "Congelateur"},
+                new Item {Value = "9", Label = "Micro-ondes"},
+                new Item {Value = "10", Label = "Palettier"},
+                new Item {Value = "11", Label = "Etagere"},
+                new Item {Value = "12", Label = "Raletier"},
+                new Item {Value = "13", Label = "Cantilever"},
+                new Item {Value = "14", Label = "Jig Transport"},
+                new Item {Value = "15", Label = "Rack dynamique"},
+                new Item {Value = "16", Label = "Remorque"},
+                new Item {Value = "17", Label = "Roll"}
             };
         }
     }

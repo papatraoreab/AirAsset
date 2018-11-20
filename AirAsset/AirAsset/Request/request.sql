@@ -48,3 +48,6 @@ select MAX(id) from AspNetUsers
 
 */
 
+
+
+select quantite, designation from Exemplaires where exemplaireCODE='AL1006'

@@ -47,6 +47,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.ConnectorNET.Data.6.8.3\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -245,6 +248,30 @@
     <Compile Include="Migrations\201811141702253_InitialAirAsset7.Designer.cs">
       <DependentUpon>201811141702253_InitialAirAsset7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811161238500_InitialAirAsset8.cs" />
+    <Compile Include="Migrations\201811161238500_InitialAirAsset8.Designer.cs">
+      <DependentUpon>201811161238500_InitialAirAsset8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811190921289_InitialAirAsset9.cs" />
+    <Compile Include="Migrations\201811190921289_InitialAirAsset9.Designer.cs">
+      <DependentUpon>201811190921289_InitialAirAsset9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191049372_InitialAirAsset10.cs" />
+    <Compile Include="Migrations\201811191049372_InitialAirAsset10.Designer.cs">
+      <DependentUpon>201811191049372_InitialAirAsset10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191058001_InitialAirAsset11.cs" />
+    <Compile Include="Migrations\201811191058001_InitialAirAsset11.Designer.cs">
+      <DependentUpon>201811191058001_InitialAirAsset11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191102139_InitialAirAsset12.cs" />
+    <Compile Include="Migrations\201811191102139_InitialAirAsset12.Designer.cs">
+      <DependentUpon>201811191102139_InitialAirAsset12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191312385_InitialAirAsset13.cs" />
+    <Compile Include="Migrations\201811191312385_InitialAirAsset13.Designer.cs">
+      <DependentUpon>201811191312385_InitialAirAsset13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -300,7 +327,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -387,6 +416,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811141702253_InitialAirAsset7.resx">
       <DependentUpon>201811141702253_InitialAirAsset7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811161238500_InitialAirAsset8.resx">
+      <DependentUpon>201811161238500_InitialAirAsset8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811190921289_InitialAirAsset9.resx">
+      <DependentUpon>201811190921289_InitialAirAsset9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191049372_InitialAirAsset10.resx">
+      <DependentUpon>201811191049372_InitialAirAsset10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191058001_InitialAirAsset11.resx">
+      <DependentUpon>201811191058001_InitialAirAsset11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191102139_InitialAirAsset12.resx">
+      <DependentUpon>201811191102139_InitialAirAsset12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191312385_InitialAirAsset13.resx">
+      <DependentUpon>201811191312385_InitialAirAsset13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

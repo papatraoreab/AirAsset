@@ -47,27 +47,27 @@ namespace AirAsset.Models
         public string description { get; set; }
 
         [Required(ErrorMessage = "Le poids du moyen est obligatoire")]
-        [Display(Name = "Poids")]
+        [Display(Name = "Poids (Kg)")]
         [DataType(DataType.Text)]
         public double poids { get; set; }
 
         [Required(ErrorMessage = "Le CMU du moyen est obligatoire")]
-        [Display(Name = "CMU")]
+        [Display(Name = "CMU (Kg)")]
         [DataType(DataType.Text)]
         public double cmu { get; set; }
 
         [Required(ErrorMessage = "La Hauteur du moyen est obligatoire")]
-        [Display(Name = "Hauteur")]
+        [Display(Name = "Hauteur (mm)")]
         [DataType(DataType.Text)]
         public double hauteur { get; set; }
 
         [Required(ErrorMessage = "La Longueur du moyen est obligatoire")]
-        [Display(Name = "Longueur")]
+        [Display(Name = "Longueur (mm)")]
         [DataType(DataType.Text)]
         public double longueur { get; set; }
 
         [Required(ErrorMessage = "La Largeur du moyen est obligatoire")]
-        [Display(Name = "Largeur")]
+        [Display(Name = "Largeur (mm)")]
         [DataType(DataType.Text)]
         public double largeur { get; set; }
 
@@ -79,17 +79,15 @@ namespace AirAsset.Models
         [Required(ErrorMessage = "Le RUS Number est obligatoire")]
         [Display(Name = "RUS Number")]
         [DataType(DataType.Text)]
-        public int r_number { get; set; }
+        public string r_number { get; set; }
 
         [Required(ErrorMessage = "Le Tool Number est obligatoire")]
         [Display(Name = "Tool Number")]
         [DataType(DataType.Text)]
-        public int t_number { get; set; }
+        public string t_number { get; set; }
 
         //collection de Files
         public virtual ICollection<File> Files { get; set; }
-
-
 
 
         //collection a afficher dans le formulaire
@@ -124,20 +122,20 @@ namespace AirAsset.Models
 
             //Init des champs du formulaires
             moyenCODE = "XX0000";
-            designation = "désignation du moyen";
+            designation = "designation du moyen";
             secteur = "1";
             program = "1";
             entrepot = "1";
             type = "1";
-            description = "Ligne1 Ligne2";
+            description = "descriptions du moyen ici, ...";
             poids = 0;
             cmu = 0;
             hauteur = 0;
             longueur = 0;
             largeur = 0;
             vVent = 0;
-            r_number = 0;
-            t_number = 0;
+            r_number = "pas renseigne";
+            t_number = "pas renseigne";
         }
     }
 }

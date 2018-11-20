@@ -103,7 +103,7 @@ namespace AirAsset.Controllers
                     break;
             }
 
-            return View(exemplaire.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 5)); //pagination
+            return View(exemplaire.Where(m => m.exemplaireCODE.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
         }
 
 
@@ -331,7 +331,7 @@ namespace AirAsset.Controllers
             var exemplaires = from m in db.Exemplaires select m;
             if (!String.IsNullOrEmpty(search))
             {
-                exemplaires = exemplaires.Where(m => m.designation.Contains(search));
+                exemplaires = exemplaires.Where(m => m.exemplaireCODE.Contains(search));
             }
             return View(exemplaires.ToList());
         }
