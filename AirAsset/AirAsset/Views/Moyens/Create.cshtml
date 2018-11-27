@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Créer un moyen</h2>
 
 
 @using (Html.BeginForm("Create", "Moyens", null, FormMethod.Post, new { enctype = "multipart/form-data" })) //is added ("Create", "Moyens", null, FormMethod.Post, new { enctype = "multipart/form-data")
@@ -29,6 +29,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.designation, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.designation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.quantite, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.quantite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.quantite, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -136,19 +144,37 @@
             </div>
         </div>
 
-
-        <!--start upload files-->
         <div class="form-group">
-            @Html.Label("Capture", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" id="Capture" name="upload" />
-            </div>
-        </div>
-        <!-- end upload files-->
+            <table class="table">
+                <tr>
+                    <td>
+                        <!--start upload files photo-->
+                        <div class="form-group">
+                            @Html.Label("Capture", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" id="Capture" name="upload" />
+                            </div>
+                        </div>
+                        <!-- end upload files photo-->
+                    </td>
+                    <td>
 
+                        <!--start upload files doc-->
+                        <div class="form-group">
+                            @Html.Label("Document", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" id="Document" name="upload" />
+                            </div>
+                        </div>
+                        <!-- end upload files doc-->
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-primary btn-lg" />
             </div>
         </div>
     </div>

@@ -27,16 +27,56 @@ namespace AirAsset.Controllers
         */
 
         // GET: Moyens
-        public ActionResult Index(string search, int? i, string SortOrder)
+        public ActionResult Index(string search, int? i, string SortOrder, string SelectedSecteur, string SelectedProgramme, string SelectedEntrepot, string SelectedType)
         {
             ViewBag.moyenCode = String.IsNullOrEmpty(SortOrder) ? "moyencode_desc" : "";
             ViewBag.designation = SortOrder == "designation" ? "designation_desc" : "designation";
+            ViewBag.quantite = SortOrder == "quantite" ? "quantite_desc" : "quantite";
             ViewBag.secteur = SortOrder == "secteur" ? "secteur_desc" : "secteur";
             ViewBag.program = SortOrder == "program" ? "program_desc" : "program";
             ViewBag.entrepotouligne = SortOrder == "entrepotouligne" ? "entrepotouligne_desc" : "entrepotouligne";
             ViewBag.type = SortOrder == "type" ? "type_desc" : "type";
 
-            var moyen = from m in db.Moyens select m;
+            var rawData = (from m in db.Moyens select m).ToList(); //filter dropdownlist
+            var moyen = from m in rawData select m;
+
+            //filter dropdownlist
+            if (!String.IsNullOrEmpty(SelectedSecteur))
+            {
+                moyen = moyen.Where(m => m.secteur.Trim().Equals(SelectedSecteur.Trim()));
+            }
+
+            if (!String.IsNullOrEmpty(SelectedProgramme))
+            {
+                moyen = moyen.Where(m => m.program.Trim().Equals(SelectedProgramme.Trim()));
+            }
+
+            if (!String.IsNullOrEmpty(SelectedEntrepot))
+            {
+                moyen = moyen.Where(m => m.entrepot.Trim().Equals(SelectedEntrepot.Trim()));
+            }
+
+            if (!String.IsNullOrEmpty(SelectedType))
+            {
+                moyen = moyen.Where(m => m.type.Trim().Equals(SelectedType.Trim()));
+            }
+
+            var UniqueSecteur = from m in moyen group m by m.secteur into newGroup where newGroup.Key != null orderby newGroup.Key select new { secteur = newGroup.Key };
+            ViewBag.UniqueSecteur = UniqueSecteur.Select(m => new SelectListItem { Value = m.secteur, Text = m.secteur }).ToList();
+
+            var UniqueProgramme = from m in moyen group m by m.program into newGroup where newGroup.Key != null orderby newGroup.Key select new { program = newGroup.Key };
+            ViewBag.UniqueProgramme = UniqueProgramme.Select(m => new SelectListItem { Value = m.program, Text = m.program }).ToList();
+
+            var UniqueEntrepot = from m in moyen group m by m.entrepot into newGroup where newGroup.Key != null orderby newGroup.Key select new { entrepot = newGroup.Key };
+            ViewBag.UniqueEntrepot = UniqueEntrepot.Select(m => new SelectListItem { Value = m.entrepot, Text = m.entrepot }).ToList();
+
+            var UniqueType = from m in moyen group m by m.type into newGroup where newGroup.Key != null orderby newGroup.Key select new { type = newGroup.Key };
+            ViewBag.UniqueType = UniqueType.Select(m => new SelectListItem { Value = m.type, Text = m.type }).ToList();
+
+            ViewBag.SelectedSecteur = SelectedSecteur;
+            ViewBag.SelectedProgramme = SelectedProgramme;
+            ViewBag.SelectedEntrepot = SelectedEntrepot;
+            ViewBag.SelectedType = SelectedType;
 
 
             switch (SortOrder)
@@ -49,6 +89,13 @@ namespace AirAsset.Controllers
                     break;
                 case "designation_desc":
                     moyen = moyen.OrderByDescending(m => m.designation);
+                    break;
+
+                case "quantite":
+                    moyen = moyen.OrderBy(m => m.quantite);
+                    break;
+                case "quantite_desc":
+                    moyen = moyen.OrderByDescending(m => m.quantite);
                     break;
 
                 case "secteur":
@@ -82,10 +129,10 @@ namespace AirAsset.Controllers
                 default:
                     moyen = moyen.OrderBy(m => m.moyenCODE);
                     break;
-
             }
 
-            return View(moyen.Where(m => m.designation.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
+            return View(moyen.ToList().ToPagedList(i ?? 1, 10)); //pagination
+            //return View(moyen.Where(m => m.designation.Contains(search) || search == null).ToList().ToPagedList(i ?? 1, 10));
         }
 
         // GET: Moyens/Details/5
@@ -117,7 +164,7 @@ namespace AirAsset.Controllers
         [Authorize(Roles = "canEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "moyenID,moyenCODE,designation,secteur,program,entrepot,type,description,poids,cmu,hauteur," +
+        public ActionResult Create([Bind(Include = "moyenID,moyenCODE,designation,quantite,secteur,program,entrepot,type,description,poids,cmu,hauteur," +
             "longueur,largeur,vVent,r_number,t_number")] Moyen moyen, HttpPostedFileBase upload) // is added upload
         { //implementation customised, to to take into account the loading of the file
             try
@@ -129,8 +176,11 @@ namespace AirAsset.Controllers
                     if (upload != null && upload.ContentLength > 0)
                     {
                         var capture = new Models.File
+
                         {
                             fileName = System.IO.Path.GetFileName(upload.FileName),
+                            
+
                             FileType = FileType.Capture,
                             contentType = upload.ContentType
                         };
@@ -140,6 +190,8 @@ namespace AirAsset.Controllers
                         }
                         moyen.Files = new List<Models.File> { capture };
                     }
+
+                   
 
                     db.Moyens.Add(moyen);
                     db.SaveChanges();
@@ -182,7 +234,7 @@ namespace AirAsset.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "moyenID,moyenCODE,designation,secteur,program,entrepot,type,description,poids,cmu,hauteur,longueur,largeur,vVent,r_number,t_number")] Moyen moyen)
+        public ActionResult Edit([Bind(Include = "moyenID,moyenCODE,designation,quantite,secteur,program,entrepot,type,description,poids,cmu,hauteur,longueur,largeur,vVent,r_number,t_number")] Moyen moyen)
         {
             if (ModelState.IsValid)
             {
@@ -208,7 +260,7 @@ namespace AirAsset.Controllers
             }
             var moyenToUpdate = db.Moyens.Find(id);
             if (TryUpdateModel(moyenToUpdate, "",
-                new string[] { "moyenCODE", "designation", "secteur", "program", "entrepot", "type", "description",
+                new string[] { "moyenCODE", "designation","quantite", "secteur", "program", "entrepot", "type", "description",
                     "poids", "cmu", "hauteur" , "longueur", "largeur", "vVent", "r_number", "t_number" }))
             {
                 try
@@ -231,6 +283,10 @@ namespace AirAsset.Controllers
                         }
                         moyenToUpdate.Files = new List<File> { capture };
                     }
+
+
+                   
+
                     db.Entry(moyenToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
 
@@ -297,13 +353,13 @@ namespace AirAsset.Controllers
             return View(moyens.ToList());
         }
 
-
-        //mooyens export
+       
+        //moyens export
         public void exportToCsv()
         {
             System.IO.StringWriter sw = new System.IO.StringWriter();
 
-            sw.WriteLine("\"Code Moyen\",\"Designation\",\"Secteur\",\"Programme\",\"Entrepot ou Ligne\",\"Type\",\"Description\",\"Poids\",\"CMU\"," +
+            sw.WriteLine("\"Code Moyen\",\"Designation\",\"Quantite\",\"Secteur\",\"Programme\",\"Entrepot ou Ligne\",\"Type\",\"Description\",\"Poids\",\"CMU\"," +
                 "\"Hauteur\",\"Longueur\",\"Largeur\",\"Vitesse du Vent\",\"RUS Number\",\"Tool Number\"");
 
             Response.ClearContent();
@@ -314,10 +370,11 @@ namespace AirAsset.Controllers
 
             foreach (var moyen in moyens)
             {
-                sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\",\"{14}\"",
+                sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\",\"{14}\",\"{15}\"",
 
                 moyen.moyenCODE,
                 moyen.designation,
+                moyen.quantite,
                 moyen.secteur,
                 moyen.program,
                 moyen.entrepot,
@@ -337,5 +394,13 @@ namespace AirAsset.Controllers
             Response.End();
         }
 
+
+        //liste des exemplaires de moyens 
+        public ActionResult List(string search, int? i)
+        {
+            var moyen = from m in db.Moyens select m;
+
+            return View(moyen.Where(m => m.moyenCODE.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination;
+        }
     }
 }

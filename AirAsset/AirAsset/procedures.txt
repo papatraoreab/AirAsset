@@ -1,0 +1,4 @@
+﻿-- admin roles adding
+open AspNetUsers Table, copy userID
+open AspNetRoles Table, copy roleID, 
+open AspNetUserRoles Table, paste roleID and userID  on column roleID and userID of AspNetUserRole

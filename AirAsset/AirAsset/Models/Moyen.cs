@@ -28,13 +28,19 @@ namespace AirAsset.Models
         [StringLength(150)]
         public string designation { get; set; }
 
-        [Display(Name = "Secteur")]
+
+        [Required(ErrorMessage = "La quantité du moyen est obligatoire")]
+        [Display(Name = "Quantité")]
+        [DataType(DataType.Text)]
+        public int quantite { get; set; }
+
+        [Display(Name = "Produit")]
         public string secteur { get; set; }
 
         [Display(Name = "Programme")]
         public string program { get; set; }
 
-        [Display(Name = "Entrepot|Ligne")]
+        [Display(Name = "Entrepot ou Ligne")]
         public string entrepot { get; set; }
 
         [Display(Name = "Type")]
@@ -123,6 +129,7 @@ namespace AirAsset.Models
             //Init des champs du formulaires
             moyenCODE = "XX0000";
             designation = "designation du moyen";
+            quantite = 1;
             secteur = "1";
             program = "1";
             entrepot = "1";

@@ -29,19 +29,73 @@ namespace AirAsset.Controllers
         */
 
         // GET: Exemplaires
-        public ActionResult Index(string search, int? i, string SortOrder)
+        public ActionResult Index(string search, int? i, string SortOrder, string SelectedDesignation, string SelectedSuivi, string SelectedLocalisation, string SelectedTypeLocalisation, string SelectedStatut)
         {
             ViewBag.exemplaireCode = String.IsNullOrEmpty(SortOrder) ? "exemplairecode_desc" : "";
             ViewBag.designation = SortOrder == "designation" ? "designation_desc" : "designation";
-            ViewBag.quantite = SortOrder == "quantite" ? "quantite_desc" : "quantite";
             ViewBag.prix = SortOrder == "prix" ? "prix_desc" : "prix";
             ViewBag.suivi = SortOrder == "suivi" ? "suivi_desc" : "suivi";
             ViewBag.location = SortOrder == "location" ? "location_desc" : "location";
+            ViewBag.typelocation = SortOrder == "typelocation" ? "typelocation_desc" : "typelocation";
             ViewBag.statut = SortOrder == "statut" ? "statut_desc" : "statut";
             ViewBag.date_es = SortOrder == "date_es" ? "date_es_desc" : "date_es";
             ViewBag.date_fs = SortOrder == "date_fs" ? "date_fs_desc" : "date_fs";
 
-            var exemplaire = from e in db.Exemplaires select e;
+            var rawData = (from e in db.Exemplaires select e).ToList(); //filter dropdownlist
+            var exemplaire = from e in rawData select e;
+
+
+            //filter dropdownlist
+            if (!String.IsNullOrEmpty(SelectedDesignation))
+            {
+                exemplaire = exemplaire.Where(m => m.designation.Trim().Equals(SelectedDesignation.Trim()));
+            }
+            if (!String.IsNullOrEmpty(SelectedSuivi))
+            {
+                exemplaire = exemplaire.Where(m => m.suivi.Trim().Equals(SelectedSuivi.Trim()));
+            }
+
+            if (!String.IsNullOrEmpty(SelectedLocalisation))
+            {
+                exemplaire = exemplaire.Where(m => m.location.Trim().Equals(SelectedLocalisation.Trim()));
+            }
+
+            if (!String.IsNullOrEmpty(SelectedTypeLocalisation))
+            {
+                exemplaire = exemplaire.Where(m => m.typelocation.Trim().Equals(SelectedTypeLocalisation.Trim()));
+            }
+
+            if (!String.IsNullOrEmpty(SelectedStatut))
+            {
+                exemplaire = exemplaire.Where(m => m.statut.Trim().Equals(SelectedStatut.Trim()));
+            }
+
+
+            var UniqueDesignation = from m in exemplaire group m by m.designation into newGroup where newGroup.Key != null orderby newGroup.Key select new { designation = newGroup.Key };
+            ViewBag.UniqueDesignation = UniqueDesignation.Select(m => new SelectListItem { Value = m.designation, Text = m.designation }).ToList();
+
+            var UniqueSuivi = from m in exemplaire group m by m.suivi into newGroup where newGroup.Key != null orderby newGroup.Key select new { suivi = newGroup.Key };
+            ViewBag.UniqueSuivi = UniqueSuivi.Select(m => new SelectListItem { Value = m.suivi, Text = m.suivi }).ToList();
+
+            var UniqueLocalisation = from m in exemplaire group m by m.location into newGroup where newGroup.Key != null orderby newGroup.Key select new { location = newGroup.Key };
+            ViewBag.UniqueLocalisation = UniqueLocalisation.Select(m => new SelectListItem { Value = m.location, Text = m.location }).ToList();
+
+            var UniqueTypeLocalisation = from m in exemplaire group m by m.typelocation into newGroup where newGroup.Key != null orderby newGroup.Key select new { typelocation = newGroup.Key };
+            ViewBag.UniqueTypeLocalisation = UniqueTypeLocalisation.Select(m => new SelectListItem { Value = m.typelocation, Text = m.typelocation }).ToList();
+
+            var UniqueStatut = from m in exemplaire group m by m.statut into newGroup where newGroup.Key != null orderby newGroup.Key select new { statut = newGroup.Key };
+            ViewBag.UniqueStatut = UniqueStatut.Select(m => new SelectListItem { Value = m.statut, Text = m.statut }).ToList();
+
+            ViewBag.SelectedSuivi = SelectedDesignation;
+            ViewBag.SelectedSuivi = SelectedSuivi;
+            ViewBag.SelectedLocalisation = SelectedLocalisation;
+            ViewBag.SelectedTypeLocalisation = SelectedTypeLocalisation;
+            ViewBag.SelectedStatut = SelectedStatut;
+
+            //end
+
+
+
 
             switch (SortOrder)
             {
@@ -55,12 +109,6 @@ namespace AirAsset.Controllers
                     exemplaire = exemplaire.OrderByDescending(e => e.designation);
                     break;
 
-                case "quantite":
-                    exemplaire = exemplaire.OrderBy(e => e.quantite);
-                    break;
-                case "quantite_desc":
-                    exemplaire = exemplaire.OrderByDescending(e => e.quantite);
-                    break;
                 case "prix":
                     exemplaire = exemplaire.OrderBy(e => e.prix);
                     break;
@@ -77,6 +125,12 @@ namespace AirAsset.Controllers
                     exemplaire = exemplaire.OrderBy(e => e.location);
                     break;
                 case "location_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.location);
+                    break;
+                case "typelocation":
+                    exemplaire = exemplaire.OrderBy(e => e.location);
+                    break;
+                case "typelocation_desc":
                     exemplaire = exemplaire.OrderByDescending(e => e.location);
                     break;
                 case "statut":
@@ -103,7 +157,9 @@ namespace AirAsset.Controllers
                     break;
             }
 
-            return View(exemplaire.Where(m => m.exemplaireCODE.StartsWith(search) || search == null).ToList().ToPagedList(i ?? 1, 10)); //pagination
+            return View(exemplaire.ToList().ToPagedList(i ?? 1, 10)); //pagination
+
+            //prise en charge recherche mettre :  return View(exemplaire.Where(m => m.exemplaireCODE.Contains(search) || search == null).ToList().ToPagedList(i ?? 1, 10));
         }
 
 
@@ -138,7 +194,7 @@ namespace AirAsset.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "exemplaireID,moyenID,designation,exemplaireCODE,quantite,prix,suivi,location,fournisseur,statut,Date_ES,Date_FS")] Exemplaire exemplaire)
+        public ActionResult Create([Bind(Include = "exemplaireID,moyenID,designation,exemplaireCODE,quantite,prix,suivi,location,typelocation,fournisseur,statut,Date_ES,Date_FS")] Exemplaire exemplaire)
         {
             if (ModelState.IsValid)
             {
@@ -173,7 +229,7 @@ namespace AirAsset.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "exemplaireID,moyenID,designation,exemplaireCODE,quantite,prix,suivi,location,fournisseur,statut,Date_ES,Date_FS")] Exemplaire exemplaire)
+        public ActionResult Edit([Bind(Include = "exemplaireID,moyenID,designation,exemplaireCODE,quantite,prix,suivi,location,typelocation,fournisseur,statut,Date_ES,Date_FS")] Exemplaire exemplaire)
         {
             if (ModelState.IsValid)
             {
@@ -204,7 +260,7 @@ namespace AirAsset.Controllers
         [Authorize(Roles = "canEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "exemplaireID,moyenID,designation,exemplaireCODE,quantite,prix,suivi,location,fournisseur,statut,Date_ES,Date_FS")]Exemplaire exemplaire)
+        public ActionResult Create([Bind(Include = "exemplaireID,moyenID,designation,exemplaireCODE,prix,suivi,location,typelocation,fournisseur,statut,Date_ES,Date_FS")]Exemplaire exemplaire)
         {
             try
             {
@@ -255,7 +311,7 @@ namespace AirAsset.Controllers
             }
             var exemplaireToUpdate = db.Exemplaires.Find(id);
             if (TryUpdateModel(exemplaireToUpdate, "",
-               new string[] { "moyenID", "designation", "exemplaireCODE", "quantite", "prix", "suivi", "location", "fournisseur", "statut", "Date_ES", "Date_FS" }))
+               new string[] { "moyenID", "designation", "exemplaireCODE", "prix", "suivi", "location","typelocation", "fournisseur", "statut", "Date_ES", "Date_FS" }))
             {
                 try
                 {
@@ -342,7 +398,7 @@ namespace AirAsset.Controllers
         {
             System.IO.StringWriter sw = new System.IO.StringWriter();
 
-            sw.WriteLine("\"Code Exemplaire\",\"Designation\",\"Quantite\",\"Prix\",\"Suivi\",\"Localisation\",\"Statut\",\"Entree en Service\",\"Fin de Service\"");
+            sw.WriteLine("\"Code Exemplaire\",\"Designation\",\"Prix\",\"Suivi\",\"Localisation\",\"Statut\",\"Entree en Service\",\"Fin de Service\"");
 
             Response.ClearContent();
             Response.AddHeader("content-disposition", "attachment;filename=exportedExemplaires.csv");
@@ -356,10 +412,10 @@ namespace AirAsset.Controllers
 
                 exemplaire.exemplaireCODE,
                 exemplaire.designation,
-                exemplaire.quantite,
                 exemplaire.prix,
                 exemplaire.suivi,
                 exemplaire.location,
+                exemplaire.typelocation,
                 exemplaire.statut,
                 exemplaire.Date_ES,
                 exemplaire.Date_FS)
@@ -370,6 +426,7 @@ namespace AirAsset.Controllers
         }
 
 
+        
         
     }
 }

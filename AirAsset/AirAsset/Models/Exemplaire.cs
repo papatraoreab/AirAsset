@@ -33,10 +33,7 @@ namespace AirAsset.Models
         [StringLength(150)]
         public string designation { get; set; }
 
-        [Required(ErrorMessage = "La quantité d'exemplaire est obligatoire")]
-        [Display(Name = "Quantité")]
-        [DataType(DataType.Text)]
-        public int quantite { get; set; }
+        
 
         [Required(ErrorMessage = "Le prix de l'exemplaire est obligatoire")]
         [Display(Name = "Prix")]
@@ -48,6 +45,10 @@ namespace AirAsset.Models
 
         [Display(Name = "Localisation")]
         public string location { get; set; }
+
+        [Display(Name = "Type de Localisation")]
+        public string typelocation { get; set; }
+
 
         [Required(ErrorMessage = "Le fournisseur de l'exemplaire est obligatoire")]
         [Display(Name = "Fournisseur")]
@@ -78,6 +79,9 @@ namespace AirAsset.Models
         //Liste des Localisations
         public ApplicationModel.Item[] LocalisationListe { get; set; }
 
+        //Liste des Localisations
+        public ApplicationModel.Item[] TypeLocalisationListe { get; set; }
+
         //Liste des Fournisseurs
         //public ApplicationModel.Item[] FournisseurListe { get; set; }
 
@@ -96,16 +100,17 @@ namespace AirAsset.Models
             //Init collections
             SuiviListe = app.SuiviListe;
             LocalisationListe = app.LocalisationListe;
+            TypeLocalisationListe = app.TypeLocalisationListe;
             //FournisseurListe = app.FournisseurListe;
             StatutListe = app.StatutListe;
 
             //Init des champs du formulaires
-            exemplaireCODE = "XX0000";
+            exemplaireCODE = "XX0000-000";
             designation = "designation du moyen";
-            quantite = 1;
             prix = 0;
             suivi = "1";
             location = "1";
+            typelocation = "1";
             fournisseur = "nom du fournisseur";
             statut = "1";
         }

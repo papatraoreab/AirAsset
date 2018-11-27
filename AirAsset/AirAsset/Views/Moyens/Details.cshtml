@@ -8,8 +8,26 @@
 
 <div class="dl-horizontal">
     <h4>Moyen</h4>
-    <hr />
+
+    <div>
+        <table class="table">
+            <tr>
+                <td>@Html.ActionLink("Créer un exemplaire du moyen", "Create", "Exemplaires")</td>
+                <td align="right">
+                    @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
+                    {
+                        @*<label>Recherche par Code:</label>*@
+                        <label>Lister les exemplaires du moyen:</label>
+                        <input type="text" name="search" placeholder="tapez le code du moyen ici." />
+                        <input type="submit" name="search" value="Search" />
+                    }
+                </td>
+
+            </tr>
+        </table>
+    </div>
     <dl class="jumbotron">
+
         <dt>
             @Html.DisplayNameFor(model => model.moyenCODE)
         </dt>
@@ -24,6 +42,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.designation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantite)
         </dd>
 
         <dt>
@@ -129,25 +155,52 @@
         <dd>
             @Html.DisplayFor(model => model.t_number)
         </dd>
+
+        <dt>
+
+        </dt>
+        <dd>
+            <div class="dropdown">
+                <table class="table">
+                    <tr>
+                        <td>Photo</td>
+                        <td>
+                            <!-- dropdown image -->
+                            <!--print file, added to correct error, le nom 'FileType n'existe pas dans le context actuel, replace(FileType,AirAsset.Models.FileType ) -->
+                            @if (Model.Files.Any(f => f.FileType == AirAsset.Models.FileType.Capture))
+                            {
+
+                                <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Capture).fileId" alt="capture" width="200" height="150" />
+                                <div class="dropdown-content">
+                                    <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Capture).fileId" alt="capture" width="600" height="300" />
+                                    <div class="desc">Capture du moyen logistique</div>
+                                </div>
+                            }
+
+                        </td>
+                        <td>
+                            <!-- dropdown image -->
+                            <!--print file, added to correct error, le nom 'FileType n'existe pas dans le context actuel, replace(FileType,AirAsset.Models.FileType ) -->
+                            @if (Model.Files.Any(f => f.FileType == AirAsset.Models.FileType.Document))
+                            {
+
+                                <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Document).fileId" alt="document" width="200" height="150" />
+                                <div class="dropdown-content">
+                                    <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Document).fileId" alt="document" width="600" height="300" />
+                                    <div class="desc">Document en PJ</div>
+                                </div>
+                            }
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </dd>
     </dl>
-</div>
-
-<div class="dropdown"> <!-- dropdown image -->
-    <!--print file, added to correct error, le nom 'FileType n'existe pas dans le context actuel, replace(FileType,AirAsset.Models.FileType ) -->
-    @if (Model.Files.Any(f => f.FileType == AirAsset.Models.FileType.Capture))
-    {
-        
-        <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Capture).fileId" alt="capture" width="200" height="150" />
-        <div class="dropdown-content">
-            <img src="~/File?id=@Model.Files.First(f => f.FileType == AirAsset.Models.FileType.Capture).fileId" alt="capture" width="600" height="300" />
-            <div class="desc">Capture du moyen logistique</div>
-        </div>
-    }
-
 </div>
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.moyenID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Modifier le moyen", "Edit", new { id = Model.moyenID }) |
+    @Html.ActionLink("Retour à la liste des moyens", "Index")
 </p>

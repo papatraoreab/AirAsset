@@ -7,8 +7,10 @@
     <title>@ViewBag.Title - AirAsset Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-  
+
+    <link href="~/Content/Chosen/chosen.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="~/Content/style_dd_nav.css">
+
 </head>
 <body>
     
@@ -77,7 +79,11 @@
             </div>
         </div>
     </div>
+    <div>
+
+    </div>
     <div class="container body-content">
+        
         @RenderBody()
         <hr />
         <footer>
@@ -87,6 +93,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

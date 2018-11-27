@@ -35,6 +35,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.quantite, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.quantite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.quantite, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.secteur, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.secteur, new { htmlAttributes = new { @class = "form-control" } })
@@ -174,7 +182,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste des moyens", "Index")
 </div>
 
 @section Scripts {

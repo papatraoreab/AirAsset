@@ -1,0 +1,30 @@
+﻿#entete, #menu, #contenu, #footer {
+    padding: 1px 0;
+}
+
+#entete {
+    background-color: #FF9900;
+    text-align: center;
+}
+
+#main {
+    max-with: 960px;
+    margin: auto;
+}
+
+#menu {
+    float: left;
+    width: 240px;
+    background-color: #FF3366;
+}
+
+#contenu {
+    margin-left: 245px;
+    background-color: #9966FF;
+}
+
+#footer {
+    background-color: #669933;
+    text-align: center;
+    clear: both;
+}

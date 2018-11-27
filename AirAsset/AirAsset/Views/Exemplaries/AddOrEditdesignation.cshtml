@@ -1,0 +1,27 @@
+﻿@model AirAsset.Models.Exemplary
+@{
+    ViewBag.Title = "AddOrEditdesignation";
+}
+
+<h2>AddOrEditdesignation</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.exemplaireID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.exemplaireCODE, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.exemplaireCODE, new SelectList(Model.MoyensCollection, "moyenID", "moyenCODE"), new { id = "normalDropDown" })
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script>
+        $(function () {
+            //normal dropdown
+            $("#normalDropDown").chosen();
+            disable_search_threshold: true
+        });
+    </script>
+}

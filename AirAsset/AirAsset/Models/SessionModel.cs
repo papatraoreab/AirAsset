@@ -15,6 +15,7 @@ namespace AirAsset.Models
         public Item[] TypeListe { get; set; }
         public Item[] SuiviListe { get; set; }
         public Item[] LocalisationListe { get; set; }
+        public Item[] TypeLocalisationListe { get; set; }
         //public Item[] FournisseursListe { get; set; }
         public Item[] StatutListe { get; set; }
     }

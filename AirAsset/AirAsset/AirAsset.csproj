@@ -47,8 +47,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.ConnectorNET.Data.6.8.3\lib\net45\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.10.8\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.10.8\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -57,8 +60,14 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -205,84 +214,90 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EntrepotLignesController.cs" />
     <Compile Include="Controllers\ExemplairesController.cs" />
+    <Compile Include="Controllers\ExemplariesController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocalisationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoyensController.cs" />
+    <Compile Include="Controllers\ProgrammesController.cs" />
     <Compile Include="Controllers\SecretController.cs" />
+    <Compile Include="Controllers\SecteursController.cs" />
+    <Compile Include="Controllers\StatutsController.cs" />
+    <Compile Include="Controllers\SuivisController.cs" />
+    <Compile Include="Controllers\TypeLocalisationsController.cs" />
+    <Compile Include="Controllers\TypeMoyensController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ApplicationModelBinder.cs" />
     <Compile Include="Infrastructure\SessionModelBinder.cs" />
-    <Compile Include="Migrations\201811070830472_InitialAirAsset.cs" />
-    <Compile Include="Migrations\201811070830472_InitialAirAsset.Designer.cs">
-      <DependentUpon>201811070830472_InitialAirAsset.cs</DependentUpon>
+    <Compile Include="Migrations\201811241825300_InitialAirAsset.cs" />
+    <Compile Include="Migrations\201811241825300_InitialAirAsset.Designer.cs">
+      <DependentUpon>201811241825300_InitialAirAsset.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811121558528_InitialAirAsset1.cs" />
-    <Compile Include="Migrations\201811121558528_InitialAirAsset1.Designer.cs">
-      <DependentUpon>201811121558528_InitialAirAsset1.cs</DependentUpon>
+    <Compile Include="Migrations\201811241850245_InitialAirAsset1.cs" />
+    <Compile Include="Migrations\201811241850245_InitialAirAsset1.Designer.cs">
+      <DependentUpon>201811241850245_InitialAirAsset1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811130941331_InitialAirAsset2.cs" />
-    <Compile Include="Migrations\201811130941331_InitialAirAsset2.Designer.cs">
-      <DependentUpon>201811130941331_InitialAirAsset2.cs</DependentUpon>
+    <Compile Include="Migrations\201811241852595_InitialAirAsset2.cs" />
+    <Compile Include="Migrations\201811241852595_InitialAirAsset2.Designer.cs">
+      <DependentUpon>201811241852595_InitialAirAsset2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811130952485_InitialAirAsset3.cs" />
-    <Compile Include="Migrations\201811130952485_InitialAirAsset3.Designer.cs">
-      <DependentUpon>201811130952485_InitialAirAsset3.cs</DependentUpon>
+    <Compile Include="Migrations\201811242101441_InitialAirAsset3.cs" />
+    <Compile Include="Migrations\201811242101441_InitialAirAsset3.Designer.cs">
+      <DependentUpon>201811242101441_InitialAirAsset3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811131021120_InitialAirAsset4.cs" />
-    <Compile Include="Migrations\201811131021120_InitialAirAsset4.Designer.cs">
-      <DependentUpon>201811131021120_InitialAirAsset4.cs</DependentUpon>
+    <Compile Include="Migrations\201811242142384_InitialAirAsset4.cs" />
+    <Compile Include="Migrations\201811242142384_InitialAirAsset4.Designer.cs">
+      <DependentUpon>201811242142384_InitialAirAsset4.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811131038376_InitialAirAsset5.cs" />
-    <Compile Include="Migrations\201811131038376_InitialAirAsset5.Designer.cs">
-      <DependentUpon>201811131038376_InitialAirAsset5.cs</DependentUpon>
+    <Compile Include="Migrations\201811242224429_InitialAirAsset5.cs" />
+    <Compile Include="Migrations\201811242224429_InitialAirAsset5.Designer.cs">
+      <DependentUpon>201811242224429_InitialAirAsset5.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811141701229_InitialAirAsset6.cs" />
-    <Compile Include="Migrations\201811141701229_InitialAirAsset6.Designer.cs">
-      <DependentUpon>201811141701229_InitialAirAsset6.cs</DependentUpon>
+    <Compile Include="Migrations\201811242236091_InitialAirAsset6.cs" />
+    <Compile Include="Migrations\201811242236091_InitialAirAsset6.Designer.cs">
+      <DependentUpon>201811242236091_InitialAirAsset6.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811141702253_InitialAirAsset7.cs" />
-    <Compile Include="Migrations\201811141702253_InitialAirAsset7.Designer.cs">
-      <DependentUpon>201811141702253_InitialAirAsset7.cs</DependentUpon>
+    <Compile Include="Migrations\201811242240027_InitialAirAsset7.cs" />
+    <Compile Include="Migrations\201811242240027_InitialAirAsset7.Designer.cs">
+      <DependentUpon>201811242240027_InitialAirAsset7.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811161238500_InitialAirAsset8.cs" />
-    <Compile Include="Migrations\201811161238500_InitialAirAsset8.Designer.cs">
-      <DependentUpon>201811161238500_InitialAirAsset8.cs</DependentUpon>
+    <Compile Include="Migrations\201811242255010_InitialAirAsset8.cs" />
+    <Compile Include="Migrations\201811242255010_InitialAirAsset8.Designer.cs">
+      <DependentUpon>201811242255010_InitialAirAsset8.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811190921289_InitialAirAsset9.cs" />
-    <Compile Include="Migrations\201811190921289_InitialAirAsset9.Designer.cs">
-      <DependentUpon>201811190921289_InitialAirAsset9.cs</DependentUpon>
+    <Compile Include="Migrations\201811242301236_InitialAirAsset9.cs" />
+    <Compile Include="Migrations\201811242301236_InitialAirAsset9.Designer.cs">
+      <DependentUpon>201811242301236_InitialAirAsset9.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811191049372_InitialAirAsset10.cs" />
-    <Compile Include="Migrations\201811191049372_InitialAirAsset10.Designer.cs">
-      <DependentUpon>201811191049372_InitialAirAsset10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811191058001_InitialAirAsset11.cs" />
-    <Compile Include="Migrations\201811191058001_InitialAirAsset11.Designer.cs">
-      <DependentUpon>201811191058001_InitialAirAsset11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811191102139_InitialAirAsset12.cs" />
-    <Compile Include="Migrations\201811191102139_InitialAirAsset12.Designer.cs">
-      <DependentUpon>201811191102139_InitialAirAsset12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811191312385_InitialAirAsset13.cs" />
-    <Compile Include="Migrations\201811191312385_InitialAirAsset13.Designer.cs">
-      <DependentUpon>201811191312385_InitialAirAsset13.cs</DependentUpon>
+    <Compile Include="Migrations\201811242308009_InitialAirAsset10.cs" />
+    <Compile Include="Migrations\201811242308009_InitialAirAsset10.Designer.cs">
+      <DependentUpon>201811242308009_InitialAirAsset10.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationModel.cs" />
+    <Compile Include="Models\EntrepotLigne.cs" />
     <Compile Include="Models\Exemplaire.cs" />
+    <Compile Include="Models\Exemplary.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Localisation.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Moyen.cs" />
+    <Compile Include="Models\Programme.cs" />
+    <Compile Include="Models\Secteur.cs" />
     <Compile Include="Models\SessionModel.cs" />
+    <Compile Include="Models\Statut.cs" />
+    <Compile Include="Models\Suivi.cs" />
+    <Compile Include="Models\TypeLocalisation.cs" />
+    <Compile Include="Models\TypeMoyen.cs" />
     <Compile Include="OpenShift\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -292,9 +307,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chosen\chosen-sprite.png" />
+    <Content Include="Content\Chosen\chosen.min.css" />
     <Content Include="Content\style_dd_image.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\style_dd_nav.css" />
+    <Content Include="Content\style_details.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Git\correction_bug.txt" />
@@ -304,6 +322,7 @@
     <Content Include="Images\airasset_img_airbus2.PNG" />
     <Content Include="Images\airasset_img_airbus3.PNG" />
     <Content Include="Images\airasset_img_airbus4.PNG" />
+    <Content Include="procedures.txt" />
     <Content Include="Request\reseed-identity_column.sql" />
     <Content Include="Request\request.sql" />
     <Content Include="Scripts\bootstrap.js" />
@@ -317,6 +336,7 @@
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -373,6 +393,53 @@
     <Content Include="Views\Exemplaires\Details.cshtml" />
     <Content Include="Views\Exemplaires\Edit.cshtml" />
     <Content Include="Views\Exemplaires\Index.cshtml" />
+    <Content Include="Views\Exemplaries\Create.cshtml" />
+    <Content Include="Views\Exemplaries\Delete.cshtml" />
+    <Content Include="Views\Exemplaries\Details.cshtml" />
+    <Content Include="Views\Exemplaries\Edit.cshtml" />
+    <Content Include="Views\Exemplaries\Index.cshtml" />
+    <Content Include="Views\Exemplaries\AddOrEdit.cshtml" />
+    <Content Include="Views\EntrepotLignes\Create.cshtml" />
+    <Content Include="Views\EntrepotLignes\Delete.cshtml" />
+    <Content Include="Views\EntrepotLignes\Details.cshtml" />
+    <Content Include="Views\EntrepotLignes\Edit.cshtml" />
+    <Content Include="Views\EntrepotLignes\Index.cshtml" />
+    <Content Include="Views\Programmes\Create.cshtml" />
+    <Content Include="Views\Programmes\Delete.cshtml" />
+    <Content Include="Views\Programmes\Details.cshtml" />
+    <Content Include="Views\Programmes\Edit.cshtml" />
+    <Content Include="Views\Programmes\Index.cshtml" />
+    <Content Include="Views\Statuts\Create.cshtml" />
+    <Content Include="Views\Statuts\Delete.cshtml" />
+    <Content Include="Views\Statuts\Details.cshtml" />
+    <Content Include="Views\Statuts\Edit.cshtml" />
+    <Content Include="Views\Statuts\Index.cshtml" />
+    <Content Include="Views\Suivis\Create.cshtml" />
+    <Content Include="Views\Suivis\Delete.cshtml" />
+    <Content Include="Views\Suivis\Details.cshtml" />
+    <Content Include="Views\Suivis\Edit.cshtml" />
+    <Content Include="Views\Suivis\Index.cshtml" />
+    <Content Include="Views\Localisations\Create.cshtml" />
+    <Content Include="Views\Localisations\Delete.cshtml" />
+    <Content Include="Views\Localisations\Details.cshtml" />
+    <Content Include="Views\Localisations\Edit.cshtml" />
+    <Content Include="Views\Localisations\Index.cshtml" />
+    <Content Include="Views\Secteurs\Create.cshtml" />
+    <Content Include="Views\Secteurs\Delete.cshtml" />
+    <Content Include="Views\Secteurs\Details.cshtml" />
+    <Content Include="Views\Secteurs\Edit.cshtml" />
+    <Content Include="Views\Secteurs\Index.cshtml" />
+    <Content Include="Views\TypeLocalisations\Create.cshtml" />
+    <Content Include="Views\TypeLocalisations\Delete.cshtml" />
+    <Content Include="Views\TypeLocalisations\Details.cshtml" />
+    <Content Include="Views\TypeLocalisations\Edit.cshtml" />
+    <Content Include="Views\TypeLocalisations\Index.cshtml" />
+    <Content Include="Views\TypeMoyens\Create.cshtml" />
+    <Content Include="Views\TypeMoyens\Delete.cshtml" />
+    <Content Include="Views\TypeMoyens\Details.cshtml" />
+    <Content Include="Views\TypeMoyens\Edit.cshtml" />
+    <Content Include="Views\TypeMoyens\Index.cshtml" />
+    <Content Include="Views\Exemplaries\AddOrEditdesignation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -393,47 +460,38 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811070830472_InitialAirAsset.resx">
-      <DependentUpon>201811070830472_InitialAirAsset.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811241825300_InitialAirAsset.resx">
+      <DependentUpon>201811241825300_InitialAirAsset.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811121558528_InitialAirAsset1.resx">
-      <DependentUpon>201811121558528_InitialAirAsset1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811241850245_InitialAirAsset1.resx">
+      <DependentUpon>201811241850245_InitialAirAsset1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811130941331_InitialAirAsset2.resx">
-      <DependentUpon>201811130941331_InitialAirAsset2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811241852595_InitialAirAsset2.resx">
+      <DependentUpon>201811241852595_InitialAirAsset2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811130952485_InitialAirAsset3.resx">
-      <DependentUpon>201811130952485_InitialAirAsset3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811242101441_InitialAirAsset3.resx">
+      <DependentUpon>201811242101441_InitialAirAsset3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811131021120_InitialAirAsset4.resx">
-      <DependentUpon>201811131021120_InitialAirAsset4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811242142384_InitialAirAsset4.resx">
+      <DependentUpon>201811242142384_InitialAirAsset4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811131038376_InitialAirAsset5.resx">
-      <DependentUpon>201811131038376_InitialAirAsset5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811242224429_InitialAirAsset5.resx">
+      <DependentUpon>201811242224429_InitialAirAsset5.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811141701229_InitialAirAsset6.resx">
-      <DependentUpon>201811141701229_InitialAirAsset6.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811242236091_InitialAirAsset6.resx">
+      <DependentUpon>201811242236091_InitialAirAsset6.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811141702253_InitialAirAsset7.resx">
-      <DependentUpon>201811141702253_InitialAirAsset7.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811242240027_InitialAirAsset7.resx">
+      <DependentUpon>201811242240027_InitialAirAsset7.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811161238500_InitialAirAsset8.resx">
-      <DependentUpon>201811161238500_InitialAirAsset8.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811242255010_InitialAirAsset8.resx">
+      <DependentUpon>201811242255010_InitialAirAsset8.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811190921289_InitialAirAsset9.resx">
-      <DependentUpon>201811190921289_InitialAirAsset9.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811242301236_InitialAirAsset9.resx">
+      <DependentUpon>201811242301236_InitialAirAsset9.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811191049372_InitialAirAsset10.resx">
-      <DependentUpon>201811191049372_InitialAirAsset10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811191058001_InitialAirAsset11.resx">
-      <DependentUpon>201811191058001_InitialAirAsset11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811191102139_InitialAirAsset12.resx">
-      <DependentUpon>201811191102139_InitialAirAsset12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811191312385_InitialAirAsset13.resx">
-      <DependentUpon>201811191312385_InitialAirAsset13.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811242308009_InitialAirAsset10.resx">
+      <DependentUpon>201811242308009_InitialAirAsset10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,26 @@
+﻿@model AirAsset.Models.Programme
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Programme</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.program)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.program)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.programID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

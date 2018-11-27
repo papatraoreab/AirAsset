@@ -7,6 +7,6 @@ namespace AirAsset.Models
 {
     public enum FileType
     {
-        Capture = 1, Photo
+        Capture = 1, Document
     }
 }
