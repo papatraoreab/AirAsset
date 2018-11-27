@@ -26,7 +26,9 @@ namespace AirAsset.Models
         //[Index(IsUnique = true)]// correct bug Column ‘{column_name}’ in table ‘{table_name}’ is of a type that is invalid to use as key column in an index.
         //[Column(TypeName = "VARCHAR")]//
         [StringLength(150)]//
-        public string exemplaireCODE { get; set; }
+        public string exemplaireCODE {
+            get; set;
+        }
 
         [Display(Name = "Désignation")]
         [DataType(DataType.Text)]
