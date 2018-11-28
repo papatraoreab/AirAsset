@@ -223,6 +223,13 @@ namespace AirAsset.Controllers
             {
                 return HttpNotFound();
             }
+
+            //added to collect dropdown list to db Moyens using object MoyensCollection
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                moyen.MoyensCollection = db.Moyens.ToList();
+            }
+
             return View(moyen);
         }
 

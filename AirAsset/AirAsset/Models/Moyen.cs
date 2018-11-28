@@ -92,6 +92,12 @@ namespace AirAsset.Models
         [DataType(DataType.Text)]
         public string t_number { get; set; }
 
+
+        [NotMapped]
+        public IEnumerable<Moyen> MoyensCollection { get; set; } 
+
+
+
         //collection de Files
         public virtual ICollection<File> Files { get; set; }
 

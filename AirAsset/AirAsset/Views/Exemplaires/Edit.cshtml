@@ -70,7 +70,16 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.suivi, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.suivi, new { htmlAttributes = new { @class = "form-control" } })
+                    @*
+        cas1, on interroge directement la bd en recuperant ExemplairesCollection, pour ce cas dans la methode edit du controleur instancie
+        Exemplaire exemplaire = db.Exemplaires.Find(id); en allant chercher les elements et les rendre en affichage dans le formulaire de modif.
+        (Nb: il faudra que la base soit remplie au prélable pour avoir les different element de liste)
+
+        cas 2, faire comme le create en chargeant Application Model dans le param cde create, pour ce cas la methode edit du controleur instancie
+        Exemplaire exemplaire = new Exemplaire(app); ce qui charge les parametres formulaires comme lors du premier chargement via le constructeur.
+        (NB: pour ce cas en mode edit, on perd ce quon avait inscrit lors de la création donc on est obligé de tout resaisir, cas1 avantagé au cas2 p/r a ce fait)
+                    *@
+                    @Html.DropDownListFor(model => model.suivi, new SelectList(Model.ExemplairesCollection, "suivi", "suivi"), new { id = "normalDropDown" })
                     @Html.ValidationMessageFor(model => model.suivi, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -78,7 +87,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.location, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.location, new SelectList(Model.ExemplairesCollection, "location", "location"), new { id = "normalDropDown" })
                     @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -86,7 +95,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.typelocation, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.typelocation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.typelocation, new SelectList(Model.ExemplairesCollection, "typelocation", "typelocation"), new { id = "normalDropDown" })
                     @Html.ValidationMessageFor(model => model.typelocation, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -102,7 +111,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.statut, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.statut, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.statut, new SelectList(Model.ExemplairesCollection, "statut", "statut"), new { id = "normalDropDown" })
                     @Html.ValidationMessageFor(model => model.statut, "", new { @class = "text-danger" })
                 </div>
             </div>

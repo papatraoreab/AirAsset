@@ -85,6 +85,8 @@ namespace AirAsset.Models
         [NotMapped]
         public IEnumerable<Moyen> MoyensCollection { get; set; }
 
+        [NotMapped]
+        public IEnumerable<Exemplaire> ExemplairesCollection { get; set; }
 
 
         //collection à afficher dans le formulaire

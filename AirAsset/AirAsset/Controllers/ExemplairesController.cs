@@ -298,7 +298,7 @@ namespace AirAsset.Controllers
                         db.SaveChanges();
                     }
                         
-                    return RedirectToAction("Details", new { id = exemplaire.exemplaireID }); 
+                    return RedirectToAction("Details", new { id = exemplaire.exemplaireID }); //after creating exemplaire, return to cureent details of exemplaire
                 }
             }
             catch (RetryLimitExceededException /* dex */)
@@ -331,14 +331,15 @@ namespace AirAsset.Controllers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 exemplaire.MoyensCollection = db.Moyens.ToList();
+                exemplaire.ExemplairesCollection = db.Exemplaires.ToList();
             }
             
             return View(exemplaire);
         }
         
-// POST: Exemplaires/Edit/5
-//[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
-[Authorize(Roles = "canEdit")]
+        // POST: Exemplaires/Edit/5
+        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
+        [Authorize(Roles = "canEdit")]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id)
@@ -347,6 +348,8 @@ namespace AirAsset.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            
             var exemplaireToUpdate = db.Exemplaires.Find(id);
             if (TryUpdateModel(exemplaireToUpdate, "",
                new string[] { "reference", "designation", "exemplaireCODE", "prix", "suivi", "location","typelocation", "fournisseur", "statut", "Date_ES", "Date_FS" }))
