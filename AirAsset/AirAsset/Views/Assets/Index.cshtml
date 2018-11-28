@@ -1,0 +1,81 @@
+﻿@model IEnumerable<AirAsset.Models.Asset>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.reference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exemplaireCODE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prix)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.suivi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typelocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fournisseur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statut)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.reference)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exemplaireCODE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.designation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suivi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typelocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fournisseur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.statut)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.assetID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.assetID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.assetID })
+        </td>
+    </tr>
+}
+
+</table>

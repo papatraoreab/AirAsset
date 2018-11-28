@@ -1,4 +1,4 @@
-﻿@model AirAsset.Models.Exemplaire
+﻿@model AirAsset.Models.Asset
 
 @{
     ViewBag.Title = "Delete";
@@ -7,20 +7,10 @@
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<div class="jumbotron">
-    <h4>Exemplaire</h4>
+<div>
+    <h4>Asset</h4>
     <hr />
     <dl class="dl-horizontal">
-        @*
-        <dt>
-            @Html.DisplayNameFor(model => model.Moyen.moyenCODE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.exemplaireCODE)
-        </dd>
-        *@
-
         <dt>
             @Html.DisplayNameFor(model => model.reference)
         </dt>
@@ -44,8 +34,6 @@
         <dd>
             @Html.DisplayFor(model => model.designation)
         </dd>
-
-
 
         <dt>
             @Html.DisplayNameFor(model => model.prix)
@@ -95,22 +83,6 @@
             @Html.DisplayFor(model => model.statut)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date_ES)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date_ES)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date_FS)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date_FS)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {
@@ -118,7 +90,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Retour à la liste des exemplaires", "Index")
+            @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>

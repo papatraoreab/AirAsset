@@ -14,20 +14,26 @@ namespace AirAsset.Models
     {
         //[ScaffoldColumn(false)]// masque les champs de formulaire de l'éditeur
         public int exemplaireID { get; set; }
-        
+
+        /*
         public virtual int moyenID { get; set; }
         public Moyen Moyen { get; set; }
+        */
 
-        public IEnumerable<Moyen> Moyens { get; set; }
 
-        [Required(ErrorMessage = "Le code de l'exemplaire est obligatoire")]
+        [Required(ErrorMessage = "La réference est obligatoire")]
+        [Display(Name = "Reference Moyen")]
+        [DataType(DataType.Text)]
+        public string reference { get; set; }
+
+        //[Required(ErrorMessage = "Le code de l'exemplaire est obligatoire")]
         [Display(Name = "Code Exemplaire")]
         [DataType(DataType.Text)]
         //[Index(IsUnique = true)]// correct bug Column ‘{column_name}’ in table ‘{table_name}’ is of a type that is invalid to use as key column in an index.
         //[Column(TypeName = "VARCHAR")]//
         [StringLength(150)]//
         public string exemplaireCODE {
-            get; set;
+            get { return reference + "-" + exemplaireID; }
         }
 
         [Display(Name = "Désignation")]
@@ -64,15 +70,23 @@ namespace AirAsset.Models
         [Required(ErrorMessage = "La date d'Entrée en Service est obligatoire")]
         [Display(Name = "Date d'Entrée en Service")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date_ES { get; set; }
 
         [Required(ErrorMessage = "La date de Fin de Service est obligatoire")]
         [Display(Name = "Date de Fin de Service")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date_FS { get; set; }
-       
+
+        public Moyen Moyen { get; set; }
+
+
+        [NotMapped]
+        public IEnumerable<Moyen> MoyensCollection { get; set; }
+
+
+
         //collection à afficher dans le formulaire
 
         //Liste des Suivis
@@ -107,7 +121,7 @@ namespace AirAsset.Models
             StatutListe = app.StatutListe;
 
             //Init des champs du formulaires
-            exemplaireCODE = "XX0000-000";
+            //exemplaireCODE = "XX0000-000";
             designation = "designation du moyen";
             prix = 0;
             suivi = "1";

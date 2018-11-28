@@ -29,9 +29,10 @@ namespace AirAsset.Controllers
         */
 
         // GET: Exemplaires
-        public ActionResult Index(string search, int? i, string SortOrder, string SelectedDesignation, string SelectedSuivi, string SelectedLocalisation, string SelectedTypeLocalisation, string SelectedStatut)
+        public ActionResult Index(string search, int? i, string SortOrder, string SelectedReference, string SelectedDesignation, string SelectedSuivi, string SelectedLocalisation, string SelectedTypeLocalisation, string SelectedStatut)
         {
-            ViewBag.exemplaireCode = String.IsNullOrEmpty(SortOrder) ? "exemplairecode_desc" : "";
+            ViewBag.reference = String.IsNullOrEmpty(SortOrder) ? "reference_desc" : "";
+            ViewBag.exemplaireCode = SortOrder == "exemplaireCODE" ? "exemplaireCODE_desc" : "exemplaireCODE";
             ViewBag.designation = SortOrder == "designation" ? "designation_desc" : "designation";
             ViewBag.prix = SortOrder == "prix" ? "prix_desc" : "prix";
             ViewBag.suivi = SortOrder == "suivi" ? "suivi_desc" : "suivi";
@@ -46,6 +47,10 @@ namespace AirAsset.Controllers
 
 
             //filter dropdownlist
+            if (!String.IsNullOrEmpty(SelectedReference))
+            {
+                exemplaire = exemplaire.Where(m => m.reference.Trim().Equals(SelectedReference.Trim()));
+            }
             if (!String.IsNullOrEmpty(SelectedDesignation))
             {
                 exemplaire = exemplaire.Where(m => m.designation.Trim().Equals(SelectedDesignation.Trim()));
@@ -70,6 +75,8 @@ namespace AirAsset.Controllers
                 exemplaire = exemplaire.Where(m => m.statut.Trim().Equals(SelectedStatut.Trim()));
             }
 
+            var UniqueReference = from m in exemplaire group m by m.reference into newGroup where newGroup.Key != null orderby newGroup.Key select new { reference = newGroup.Key };
+            ViewBag.UniqueReference = UniqueReference.Select(m => new SelectListItem { Value = m.reference, Text = m.reference }).ToList();
 
             var UniqueDesignation = from m in exemplaire group m by m.designation into newGroup where newGroup.Key != null orderby newGroup.Key select new { designation = newGroup.Key };
             ViewBag.UniqueDesignation = UniqueDesignation.Select(m => new SelectListItem { Value = m.designation, Text = m.designation }).ToList();
@@ -86,7 +93,8 @@ namespace AirAsset.Controllers
             var UniqueStatut = from m in exemplaire group m by m.statut into newGroup where newGroup.Key != null orderby newGroup.Key select new { statut = newGroup.Key };
             ViewBag.UniqueStatut = UniqueStatut.Select(m => new SelectListItem { Value = m.statut, Text = m.statut }).ToList();
 
-            ViewBag.SelectedSuivi = SelectedDesignation;
+            ViewBag.SelectedReference = SelectedReference;
+            ViewBag.SelectedDesignation = SelectedDesignation;
             ViewBag.SelectedSuivi = SelectedSuivi;
             ViewBag.SelectedLocalisation = SelectedLocalisation;
             ViewBag.SelectedTypeLocalisation = SelectedTypeLocalisation;
@@ -99,9 +107,17 @@ namespace AirAsset.Controllers
 
             switch (SortOrder)
             {
-                case "exemplairecode_desc":
-                    exemplaire = exemplaire.OrderByDescending(e => e.exemplaireCODE);
+                case "reference":
+                    exemplaire = exemplaire.OrderByDescending(e => e.reference);
                     break;
+
+                case "exemplaireCODE":
+                    exemplaire = exemplaire.OrderBy(e => e.designation);
+                    break;
+                case "exemplaireCODE_desc":
+                    exemplaire = exemplaire.OrderByDescending(e => e.designation);
+                    break;
+
                 case "designation":
                     exemplaire = exemplaire.OrderBy(e => e.designation);
                     break;
@@ -153,7 +169,7 @@ namespace AirAsset.Controllers
                     break;
                     
                 default:
-                    exemplaire = exemplaire.OrderBy(e => e.exemplaireCODE);
+                    exemplaire = exemplaire.OrderBy(e => e.reference);
                     break;
             }
 
@@ -249,10 +265,19 @@ namespace AirAsset.Controllers
         // GET: Exemplaires/Create
         //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
         [Authorize(Roles = "canEdit")]
-        public ActionResult Create(ApplicationModel app)
+        public ActionResult Create(ApplicationModel app, int id = 0)
         {
-            MoyensDropDownList();
-            return View(new Exemplaire(app));
+            Exemplaire exemplaires = new Exemplaire(app);
+           
+
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                exemplaires.MoyensCollection = db.Moyens.ToList();
+               
+
+            }
+
+            return View(exemplaires);
         }
 
         // POST: Exemplaires/Create
@@ -260,15 +285,20 @@ namespace AirAsset.Controllers
         [Authorize(Roles = "canEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "exemplaireID,moyenID,designation,exemplaireCODE,prix,suivi,location,typelocation,fournisseur,statut,Date_ES,Date_FS")]Exemplaire exemplaire)
+        public ActionResult Create([Bind(Include = "exemplaireID,reference,designation,exemplaireCODE,prix,suivi,location,typelocation,fournisseur,statut,Date_ES,Date_FS")]Exemplaire exemplaire)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Exemplaires.Add(exemplaire);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+
+                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        db.Exemplaires.Add(exemplaire);
+                        db.SaveChanges();
+                    }
+                        
+                    return RedirectToAction("Index", new { id = 0 });
                 }
             }
             catch (RetryLimitExceededException /* dex */)
@@ -276,31 +306,39 @@ namespace AirAsset.Controllers
                 //Log the error (uncomment dex variable name and add a line here to write a log.)
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
             }
-            MoyensDropDownList(exemplaire.moyenID);
+            
             return View(exemplaire);
         }
 
         // GET: Exemplaires/Edit/5
         //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
         [Authorize(Roles ="canEdit")]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, ApplicationModel app)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            //Exemplaire exemplaire = new Exemplaire(app);
             Exemplaire exemplaire = db.Exemplaires.Find(id);
             if (exemplaire == null)
             {
                 return HttpNotFound();
             }
-            MoyensDropDownList(exemplaire.moyenID);
+
+
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                exemplaire.MoyensCollection = db.Moyens.ToList();
+            }
+            
             return View(exemplaire);
         }
-
-        // POST: Exemplaires/Edit/5
-        //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
-        [Authorize(Roles = "canEdit")]
+        
+// POST: Exemplaires/Edit/5
+//[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com")]
+[Authorize(Roles = "canEdit")]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id)
@@ -311,7 +349,7 @@ namespace AirAsset.Controllers
             }
             var exemplaireToUpdate = db.Exemplaires.Find(id);
             if (TryUpdateModel(exemplaireToUpdate, "",
-               new string[] { "moyenID", "designation", "exemplaireCODE", "prix", "suivi", "location","typelocation", "fournisseur", "statut", "Date_ES", "Date_FS" }))
+               new string[] { "reference", "designation", "exemplaireCODE", "prix", "suivi", "location","typelocation", "fournisseur", "statut", "Date_ES", "Date_FS" }))
             {
                 try
                 {
@@ -325,19 +363,11 @@ namespace AirAsset.Controllers
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                 }
             }
-            MoyensDropDownList(exemplaireToUpdate.moyenID);
+          
             return View(exemplaireToUpdate);
         }
 
-        private void MoyensDropDownList(object selectedMoyen = null)
-        {
-            var moyensQuery = from d in db.Moyens
-                                   orderby d.moyenCODE
-                                   select d;
- 
-            ViewBag.moyenID = new SelectList(moyensQuery, "moyenID", "moyenCODE", selectedMoyen);
-        }
-
+        
         // end new 4 methods of Create and Edit
 
 

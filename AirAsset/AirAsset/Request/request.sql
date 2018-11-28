@@ -8,7 +8,9 @@ select * from AspNetUserLogins
 select * from AspNetUserRoles -- users role
 select * from __MigrationHistory
 select* from Exemplaries
+select* from Assets
 
+truncate table  Assets
 
 -- select 
 

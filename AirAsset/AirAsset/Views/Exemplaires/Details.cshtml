@@ -11,11 +11,11 @@
     <hr />
     <dl class="jumbotron">
         <dt>
-            @Html.DisplayNameFor(model => model.Moyen.moyenCODE)
+            @Html.DisplayNameFor(model => model.reference)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.exemplaireCODE)
+            @Html.DisplayFor(model => model.reference)
         </dd>
 
         <dt>
@@ -104,5 +104,5 @@
 <p>
 
     @Html.ActionLink("Edit", "Edit", new { id = Model.exemplaireID }) | 
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste des exemplaires", "Index")
 </p>
