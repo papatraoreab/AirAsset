@@ -112,10 +112,10 @@ namespace AirAsset.Controllers
                     break;
 
                 case "exemplaireCODE":
-                    exemplaire = exemplaire.OrderBy(e => e.designation);
+                    exemplaire = exemplaire.OrderBy(e => e.exemplaireCODE);
                     break;
                 case "exemplaireCODE_desc":
-                    exemplaire = exemplaire.OrderByDescending(e => e.designation);
+                    exemplaire = exemplaire.OrderByDescending(e => e.exemplaireCODE);
                     break;
 
                 case "designation":

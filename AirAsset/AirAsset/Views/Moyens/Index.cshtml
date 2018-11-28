@@ -235,6 +235,11 @@
     </table>
 
 </div>
+
+<div>
+    @Html.ActionLink("Aller à la liste de tous les exemplaires des moyens existant", "Index", "Exemplaires")
+</div>
+
 <hr />
 
 @Html.PagedListPager(Model, i => Url.Action("Index", "Moyens", new { i, search = Request.QueryString["search"] })) @*added to implemented pagination*@
