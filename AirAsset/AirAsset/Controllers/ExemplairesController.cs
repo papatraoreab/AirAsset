@@ -298,7 +298,7 @@ namespace AirAsset.Controllers
                         db.SaveChanges();
                     }
                         
-                    return RedirectToAction("Index", new { id = 0 });
+                    return RedirectToAction("Details", new { id = exemplaire.exemplaireID }); 
                 }
             }
             catch (RetryLimitExceededException /* dex */)

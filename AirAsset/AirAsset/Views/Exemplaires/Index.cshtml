@@ -74,7 +74,8 @@
                     SelectedStatut = ViewBag.SelectedStatut
                 })
             </th>
-
+           
+                
             <th>
                 @Html.ActionLink("Prix", "Index",
                 new { SortOrder = ViewBag.prix,
@@ -85,6 +86,7 @@
                     SelectedStatut = ViewBag.SelectedStatut
                 })
             </th>
+            
             <th>
                 @Html.ActionLink("Suivi", "Index",
                 new { SortOrder = ViewBag.suivi,
@@ -116,20 +118,20 @@
                     SelectedStatut = ViewBag.SelectedStatut
                 })
             </th>
-            <!-- hiden display
-
-        <th>
-            @Html.ActionLink("Fournisseur", "Index",
-            new { SortOrder = ViewBag.fournisseur,
-                SelectedReference = ViewBag.SelectedReference,
-                SelectedSuivi = ViewBag.SelectedSuivi,
-                SelectedLocalisation = ViewBag.SelectedLocalisation,
-                SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                SelectedStatut = ViewBag.SelectedStatut
-            })
-        </th>
-
-    -->
+            
+            @*
+            <th>
+                @Html.ActionLink("Fournisseur", "Index",
+                new { SortOrder = ViewBag.fournisseur,
+                    SelectedReference = ViewBag.SelectedReference,
+                    SelectedSuivi = ViewBag.SelectedSuivi,
+                    SelectedLocalisation = ViewBag.SelectedLocalisation,
+                    SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                    SelectedStatut = ViewBag.SelectedStatut
+                })
+            </th>
+            *@
+    
             <th>
                 @Html.ActionLink("Statut", "Index",
                 new { SortOrder = ViewBag.statut,
@@ -140,7 +142,9 @@
                     SelectedStatut = ViewBag.SelectedStatut
                 })
             </th>
-            <th>
+
+            @*
+                <th>
                 @Html.ActionLink("Entrée en Service", "Index",
                 new { SortOrder = ViewBag.date_es,
                     SelectedReference = ViewBag.SelectedReference,
@@ -150,6 +154,8 @@
                     SelectedStatut = ViewBag.SelectedStatut
                 })
             </th>
+            *@
+            
             <th>
                 @Html.ActionLink("Fin de Service", "Index",
                 new { SortOrder = ViewBag.date_fs,
@@ -189,7 +195,7 @@
             </th>
             <th></th>
             <th></th>
-            <th></th>
+          
         </tr>
             <!-- end Filter dropdownlist-->
         }
@@ -197,67 +203,70 @@
 
         @foreach (var item in Model)
         {
-            <tr class="jumbotron">
-                <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index-->
-                <td>
-                    @Html.DisplayFor(modelItem => item.reference)
-                </td>
+        <tr class="jumbotron">
+            <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index-->
+            <td>
+                @Html.DisplayFor(modelItem => item.reference)
+            </td>
 
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.exemplaireCODE)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.exemplaireCODE)
+            </td>
 
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.designation)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.designation)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.prix)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.suivi)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.location)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.typelocation)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prix)
+            </td>
 
-    <!--
+            <td>
+                @Html.DisplayFor(modelItem => item.suivi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.typelocation)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.fournisseur)
-        </td>
+            @*
 
-    -->
+            <td>
+                @Html.DisplayFor(modelItem => item.fournisseur)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.statut)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date_ES)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date_FS)
-                </td>
+            *@
 
-                <td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statut)
+            </td>
+
+            @*
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_ES)
+            </td>
+            *@
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_FS)
+            </td>
+
+            <td>
 
 
+                @Html.ActionLink("Détails", "Details", new { id = item.exemplaireID })
+                @Html.ActionLink("Modifier", "Edit", new { id = item.exemplaireID })
 
-                    @Html.ActionLink("Edit", "Edit", new { id = item.exemplaireID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.exemplaireID }) |
+                @if (User.IsInRole("canEdit"))
+                {
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.exemplaireID })
+                }
 
-                    @if (User.IsInRole("canEdit"))
-                    {
-                        @Html.ActionLink("Delete", "Delete", new { id = item.exemplaireID })
-                    }
-
-                </td>
-            </tr>
+            </td>
+        </tr>
         }
 
     </table>

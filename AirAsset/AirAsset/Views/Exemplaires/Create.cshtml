@@ -119,7 +119,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+                    <input type="submit" value="Create" class="btn btn-primary btn-lg" onclick="myFunction()"/>
                 </div>
             </div>
         </div>
@@ -140,5 +140,9 @@
             $("#normalDropDown").chosen();
             disable_search_threshold: true
         });
+        
+        function myFunction() {
+            alert("L'exemplaire du moyen a été créé avec succès");
+        }
     </script>
 }

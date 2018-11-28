@@ -12,8 +12,6 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<hr />
-
 
 <!-- zone de recherche-->
 <div>
@@ -29,6 +27,9 @@
 
 </div>
 
+
+
+
 <hr />
 
 @if (User.IsInRole("canEdit"))
@@ -38,105 +39,105 @@
 <div>
     <table class="table">
 
-      @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
         {
             <tr class="jumbotron">
                 <th>
-                   @Html.ActionLink("Code Moyen", "Index",
-                   new { SortOrder = ViewBag.moyenCode,
-                       SelectedSecteur = ViewBag.SelectedSecteur,
-                       SelectedProgramme = ViewBag.SelectedProgramme,
-                       SelectedEntrepot = ViewBag.SelectedEntrepot,
-                       SelectedType = ViewBag.SelectedType
-               })
+                    @Html.ActionLink("Code", "Index",
+                    new { SortOrder = ViewBag.moyenCode,
+                        SelectedSecteur = ViewBag.SelectedSecteur,
+                        SelectedProgramme = ViewBag.SelectedProgramme,
+                        SelectedEntrepot = ViewBag.SelectedEntrepot,
+                        SelectedType = ViewBag.SelectedType
+                })
                 </th>
 
                 <th>
-                   @Html.ActionLink("Désignation", "Index",
-                   new { SortOrder = ViewBag.designation,
-                       SelectedSecteur = ViewBag.SelectedSecteur,
-                       SelectedProgramme = ViewBag.SelectedProgramme,
-                       SelectedEntrepot = ViewBag.SelectedEntrepot,
-                       SelectedType = ViewBag.SelectedType
-               })
+                    @Html.ActionLink("Désignation", "Index",
+                    new { SortOrder = ViewBag.designation,
+                        SelectedSecteur = ViewBag.SelectedSecteur,
+                        SelectedProgramme = ViewBag.SelectedProgramme,
+                        SelectedEntrepot = ViewBag.SelectedEntrepot,
+                        SelectedType = ViewBag.SelectedType
+                })
                 </th>
                 <th>
-                   @Html.ActionLink("Quantité", "Index",
-                   new { SortOrder = ViewBag.quantite,
-                       SelectedSecteur = ViewBag.SelectedSecteur,
-                       SelectedProgramme = ViewBag.SelectedProgramme,
-                       SelectedEntrepot = ViewBag.SelectedEntrepot,
-                       SelectedType = ViewBag.SelectedType
-               })
+                    @Html.ActionLink("Quantité", "Index",
+                    new { SortOrder = ViewBag.quantite,
+                        SelectedSecteur = ViewBag.SelectedSecteur,
+                        SelectedProgramme = ViewBag.SelectedProgramme,
+                        SelectedEntrepot = ViewBag.SelectedEntrepot,
+                        SelectedType = ViewBag.SelectedType
+                })
                 </th>
                 <th>
-                   @Html.ActionLink("Produit", "Index",
-                   new { SortOrder = ViewBag.secteur,
-                       SelectedSecteur = ViewBag.SelectedSecteur,
-                       SelectedProgramme = ViewBag.SelectedProgramme,
-                       SelectedEntrepot = ViewBag.SelectedEntrepot,
-                       SelectedType = ViewBag.SelectedType})
+                    @Html.ActionLink("Produit", "Index",
+                    new { SortOrder = ViewBag.secteur,
+                        SelectedSecteur = ViewBag.SelectedSecteur,
+                        SelectedProgramme = ViewBag.SelectedProgramme,
+                        SelectedEntrepot = ViewBag.SelectedEntrepot,
+                        SelectedType = ViewBag.SelectedType})
                 </th>
                 <th>
-                   @Html.ActionLink("Programme", "Index",
-                   new { SortOrder = ViewBag.program,
-                       SelectedSecteur = ViewBag.SelectedSecteur,
-                       SelectedProgramme = ViewBag.SelectedProgramme,
-                       SelectedEntrepot = ViewBag.SelectedEntrepot,
-                       SelectedType = ViewBag.SelectedType
-               })
+                    @Html.ActionLink("Programme", "Index",
+                    new { SortOrder = ViewBag.program,
+                        SelectedSecteur = ViewBag.SelectedSecteur,
+                        SelectedProgramme = ViewBag.SelectedProgramme,
+                        SelectedEntrepot = ViewBag.SelectedEntrepot,
+                        SelectedType = ViewBag.SelectedType
+                })
                 </th>
                 <th>
-                   @Html.ActionLink("Entrepot ou Ligne", "Index",
-                   new { SortOrder = ViewBag.entrepotouligne,
-                       SelectedSecteur = ViewBag.SelectedSecteur,
-                       SelectedProgramme = ViewBag.SelectedProgramme,
-                       SelectedEntrepot = ViewBag.SelectedEntrepot,
-                       SelectedType = ViewBag.SelectedType
-               })
+                    @Html.ActionLink("Entrepot ou Ligne", "Index",
+                    new { SortOrder = ViewBag.entrepotouligne,
+                        SelectedSecteur = ViewBag.SelectedSecteur,
+                        SelectedProgramme = ViewBag.SelectedProgramme,
+                        SelectedEntrepot = ViewBag.SelectedEntrepot,
+                        SelectedType = ViewBag.SelectedType
+                })
                 </th>
                 <th>
-                   @Html.ActionLink("Type", "Index",
-                   new { SortOrder = ViewBag.type,
-                       SelectedSecteur = ViewBag.SelectedSecteur,
-                       SelectedProgramme = ViewBag.SelectedProgramme,
-                       SelectedEntrepot = ViewBag.SelectedEntrepot,
-                       SelectedType = ViewBag.SelectedType
-               })
+                    @Html.ActionLink("Type", "Index",
+                    new { SortOrder = ViewBag.type,
+                        SelectedSecteur = ViewBag.SelectedSecteur,
+                        SelectedProgramme = ViewBag.SelectedProgramme,
+                        SelectedEntrepot = ViewBag.SelectedEntrepot,
+                        SelectedType = ViewBag.SelectedType
+                })
                 </th>
 
 
 
                 <!-- hiden display
 
-                <th>
-                    @Html.DisplayNameFor(model => model.First().description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.First().poids)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.First().cmu)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.First().hauteur)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.First().longueur)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.First().largeur)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.First().vVent)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.First().r_number)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.First().t_number)
-                </th>
-            -->
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().poids)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().cmu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().hauteur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().longueur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().largeur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().vVent)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().r_number)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().t_number)
+                    </th>
+                -->
 
                 <th></th>
             </tr>
@@ -191,41 +192,41 @@
                 </td>
 
                 <!-- hiden display
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.poids)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cmu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.hauteur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.longueur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.largeur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.vVent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.r_number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.t_number)
+                    </td>
+                -->
                 <td>
-                    @Html.DisplayFor(modelItem => item.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.poids)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cmu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.hauteur)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.longueur)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.largeur)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.vVent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.r_number)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.t_number)
-                </td>
-            -->
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.moyenID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.moyenID }) |
+                    @Html.ActionLink("Détails", "Details", new { id = item.moyenID })
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.moyenID })
 
                     @if (User.IsInRole("canEdit"))
                     {
-                        @Html.ActionLink("Delete", "Delete", new { id = item.moyenID })
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.moyenID })
                     }
                 </td>
             </tr>
