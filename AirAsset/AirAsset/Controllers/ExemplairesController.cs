@@ -42,56 +42,59 @@ namespace AirAsset.Controllers
             ViewBag.date_es = SortOrder == "date_es" ? "date_es_desc" : "date_es";
             ViewBag.date_fs = SortOrder == "date_fs" ? "date_fs_desc" : "date_fs";
 
-            var rawData = (from e in db.Exemplaires select e).ToList(); //filter dropdownlist
+            var rawData = (from e in db.Exemplaires select e).Where(e => e.reference.Contains(search) || search == null).ToList();//filter dropdownlist and include value 
+            //search by exemplaireCODE
+            
             var exemplaire = from e in rawData select e;
 
 
             //filter dropdownlist
             if (!String.IsNullOrEmpty(SelectedReference))
             {
-                exemplaire = exemplaire.Where(m => m.reference.Trim().Equals(SelectedReference.Trim()));
+                exemplaire = exemplaire.Where(e => e.reference.Trim().Equals(SelectedReference.Trim()));
+
             }
             if (!String.IsNullOrEmpty(SelectedDesignation))
             {
-                exemplaire = exemplaire.Where(m => m.designation.Trim().Equals(SelectedDesignation.Trim()));
+                exemplaire = exemplaire.Where(e => e.designation.Trim().Equals(SelectedDesignation.Trim()));
             }
             if (!String.IsNullOrEmpty(SelectedSuivi))
             {
-                exemplaire = exemplaire.Where(m => m.suivi.Trim().Equals(SelectedSuivi.Trim()));
+                exemplaire = exemplaire.Where(e => e.suivi.Trim().Equals(SelectedSuivi.Trim()));
             }
 
             if (!String.IsNullOrEmpty(SelectedLocalisation))
             {
-                exemplaire = exemplaire.Where(m => m.location.Trim().Equals(SelectedLocalisation.Trim()));
+                exemplaire = exemplaire.Where(e => e.location.Trim().Equals(SelectedLocalisation.Trim()));
             }
 
             if (!String.IsNullOrEmpty(SelectedTypeLocalisation))
             {
-                exemplaire = exemplaire.Where(m => m.typelocation.Trim().Equals(SelectedTypeLocalisation.Trim()));
+                exemplaire = exemplaire.Where(e => e.typelocation.Trim().Equals(SelectedTypeLocalisation.Trim()));
             }
 
             if (!String.IsNullOrEmpty(SelectedStatut))
             {
-                exemplaire = exemplaire.Where(m => m.statut.Trim().Equals(SelectedStatut.Trim()));
+                exemplaire = exemplaire.Where(e => e.statut.Trim().Equals(SelectedStatut.Trim()));
             }
 
-            var UniqueReference = from m in exemplaire group m by m.reference into newGroup where newGroup.Key != null orderby newGroup.Key select new { reference = newGroup.Key };
-            ViewBag.UniqueReference = UniqueReference.Select(m => new SelectListItem { Value = m.reference, Text = m.reference }).ToList();
+            var UniqueReference = from e in exemplaire group e by e.reference into newGroup where newGroup.Key != null orderby newGroup.Key select new { reference = newGroup.Key };
+            ViewBag.UniqueReference = UniqueReference.Select(e => new SelectListItem { Value = e.reference, Text = e.reference }).ToList();
 
-            var UniqueDesignation = from m in exemplaire group m by m.designation into newGroup where newGroup.Key != null orderby newGroup.Key select new { designation = newGroup.Key };
-            ViewBag.UniqueDesignation = UniqueDesignation.Select(m => new SelectListItem { Value = m.designation, Text = m.designation }).ToList();
+            var UniqueDesignation = from e in exemplaire group e by e.designation into newGroup where newGroup.Key != null orderby newGroup.Key select new { designation = newGroup.Key };
+            ViewBag.UniqueDesignation = UniqueDesignation.Select(e => new SelectListItem { Value = e.designation, Text = e.designation }).ToList();
 
-            var UniqueSuivi = from m in exemplaire group m by m.suivi into newGroup where newGroup.Key != null orderby newGroup.Key select new { suivi = newGroup.Key };
-            ViewBag.UniqueSuivi = UniqueSuivi.Select(m => new SelectListItem { Value = m.suivi, Text = m.suivi }).ToList();
+            var UniqueSuivi = from e in exemplaire group e by e.suivi into newGroup where newGroup.Key != null orderby newGroup.Key select new { suivi = newGroup.Key };
+            ViewBag.UniqueSuivi = UniqueSuivi.Select(e => new SelectListItem { Value = e.suivi, Text = e.suivi }).ToList();
 
-            var UniqueLocalisation = from m in exemplaire group m by m.location into newGroup where newGroup.Key != null orderby newGroup.Key select new { location = newGroup.Key };
-            ViewBag.UniqueLocalisation = UniqueLocalisation.Select(m => new SelectListItem { Value = m.location, Text = m.location }).ToList();
+            var UniqueLocalisation = from e in exemplaire group e by e.location into newGroup where newGroup.Key != null orderby newGroup.Key select new { location = newGroup.Key };
+            ViewBag.UniqueLocalisation = UniqueLocalisation.Select(e => new SelectListItem { Value = e.location, Text = e.location }).ToList();
 
-            var UniqueTypeLocalisation = from m in exemplaire group m by m.typelocation into newGroup where newGroup.Key != null orderby newGroup.Key select new { typelocation = newGroup.Key };
-            ViewBag.UniqueTypeLocalisation = UniqueTypeLocalisation.Select(m => new SelectListItem { Value = m.typelocation, Text = m.typelocation }).ToList();
+            var UniqueTypeLocalisation = from e in exemplaire group e by e.typelocation into newGroup where newGroup.Key != null orderby newGroup.Key select new { typelocation = newGroup.Key };
+            ViewBag.UniqueTypeLocalisation = UniqueTypeLocalisation.Select(e => new SelectListItem { Value = e.typelocation, Text = e.typelocation }).ToList();
 
-            var UniqueStatut = from m in exemplaire group m by m.statut into newGroup where newGroup.Key != null orderby newGroup.Key select new { statut = newGroup.Key };
-            ViewBag.UniqueStatut = UniqueStatut.Select(m => new SelectListItem { Value = m.statut, Text = m.statut }).ToList();
+            var UniqueStatut = from e in exemplaire group e by e.statut into newGroup where newGroup.Key != null orderby newGroup.Key select new { statut = newGroup.Key };
+            ViewBag.UniqueStatut = UniqueStatut.Select(e => new SelectListItem { Value = e.statut, Text = e.statut }).ToList();
 
             ViewBag.SelectedReference = SelectedReference;
             ViewBag.SelectedDesignation = SelectedDesignation;
@@ -417,10 +420,10 @@ namespace AirAsset.Controllers
         //Research 
         public ActionResult Research(string search)
         {
-            var exemplaires = from m in db.Exemplaires select m;
+            var exemplaires = from e in db.Exemplaires select e;
             if (!String.IsNullOrEmpty(search))
             {
-                exemplaires = exemplaires.Where(m => m.exemplaireCODE.Contains(search));
+                exemplaires = exemplaires.Where(e => e.reference.Contains(search));
             }
             return View(exemplaires.ToList());
         }

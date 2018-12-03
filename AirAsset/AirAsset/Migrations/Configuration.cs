@@ -50,7 +50,7 @@ namespace AirAsset.Migrations
 
 
             };
-            ir = um.Create(user, "Advanced*");//passwd
+            ir = um.Create(user, "Advanced123*");//passwd
 
             if(ir.Succeeded == false)
             {

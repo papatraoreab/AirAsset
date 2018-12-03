@@ -12,6 +12,7 @@ namespace AirAsset.Models
     public class Moyen
     {
         //[ScaffoldColumn(false)]// masque les champs de formulaire de l'éditeur
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int moyenID { get; set; }
 
         [Required(ErrorMessage = "Le code du moyen est obligatoire")]
@@ -19,17 +20,17 @@ namespace AirAsset.Models
         [DataType(DataType.Text)]
         [Index(IsUnique = true)]
         [Column(TypeName = "VARCHAR")]
-        [StringLength(150)]
+        [StringLength(6, ErrorMessage = "Le code ne peut pas dépasser 6 caractères.")]
         public string moyenCODE { get; set; }
 
-        [Required(ErrorMessage = "La désignation du moyen est obligatoire")]
+        [Required(ErrorMessage = "La désignation est obligatoire")]
         [Display(Name = "Désignation ")]
         [DataType(DataType.Text)]
         [StringLength(150)]
         public string designation { get; set; }
 
 
-        [Required(ErrorMessage = "La quantité du moyen est obligatoire")]
+        [Required(ErrorMessage = "La quantité est obligatoire")]
         [Display(Name = "Quantité")]
         [DataType(DataType.Text)]
         public int quantite { get; set; }
@@ -46,33 +47,33 @@ namespace AirAsset.Models
         [Display(Name = "Type")]
         public string type { get; set; }
 
-        [Required(ErrorMessage = "La description du moyen est obligatoire")]
+        [Required(ErrorMessage = "La description est obligatoire")]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Description")]
         [StringLength(250)]
         public string description { get; set; }
 
-        [Required(ErrorMessage = "Le poids du moyen est obligatoire")]
+        [Required(ErrorMessage = "Le poids est obligatoire")]
         [Display(Name = "Poids (Kg)")]
         [DataType(DataType.Text)]
         public double poids { get; set; }
 
-        [Required(ErrorMessage = "Le CMU du moyen est obligatoire")]
+        [Required(ErrorMessage = "Le CMU est obligatoire")]
         [Display(Name = "CMU (Kg)")]
         [DataType(DataType.Text)]
         public double cmu { get; set; }
 
-        [Required(ErrorMessage = "La Hauteur du moyen est obligatoire")]
+        [Required(ErrorMessage = "La Hauteur est obligatoire")]
         [Display(Name = "Hauteur (mm)")]
         [DataType(DataType.Text)]
         public double hauteur { get; set; }
 
-        [Required(ErrorMessage = "La Longueur du moyen est obligatoire")]
+        [Required(ErrorMessage = "La Longueur est obligatoire")]
         [Display(Name = "Longueur (mm)")]
         [DataType(DataType.Text)]
         public double longueur { get; set; }
 
-        [Required(ErrorMessage = "La Largeur du moyen est obligatoire")]
+        [Required(ErrorMessage = "La Largeur est obligatoire")]
         [Display(Name = "Largeur (mm)")]
         [DataType(DataType.Text)]
         public double largeur { get; set; }

@@ -32,14 +32,14 @@
             </div>
 
             @*
-               <div class="form-group">
-                @Html.LabelFor(model => model.exemplaireCODE, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+           <div class="form-group">
+            @Html.LabelFor(model => model.exemplaireCODE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
 
-                    @Html.EditorFor(model => model.exemplaireCODE, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.exemplaireCODE, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.exemplaireCODE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.exemplaireCODE, "", new { @class = "text-danger" })
             </div>
+        </div>
             *@
 
 
@@ -117,9 +117,11 @@
                 </div>
             </div>
 
+            <hr />
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-primary btn-lg" onclick="myFunction()"/>
+                    <input type="submit" value="Create" class="btn btn-primary btn-lg" onclick="myFunction()" />
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ namespace AirAsset.Models
     public class Exemplaire
     {
         //[ScaffoldColumn(false)]// masque les champs de formulaire de l'éditeur
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int exemplaireID { get; set; }
 
         /*
@@ -37,13 +38,12 @@ namespace AirAsset.Models
         }
 
         [Display(Name = "Désignation")]
-        [DataType(DataType.Text)]
-        [StringLength(150)]
-        public string designation { get; set; }
-
+        public string designation {
+            get; set; }
         
 
-        [Required(ErrorMessage = "Le prix de l'exemplaire est obligatoire")]
+        
+        [Required(ErrorMessage = "Le prix est obligatoire")]
         [Display(Name = "Prix")]
         [DataType(DataType.Text)]
         public double prix { get; set; }
@@ -58,7 +58,7 @@ namespace AirAsset.Models
         public string typelocation { get; set; }
 
 
-        [Required(ErrorMessage = "Le fournisseur de l'exemplaire est obligatoire")]
+        [Required(ErrorMessage = "Le fournisseur est obligatoire")]
         [Display(Name = "Fournisseur")]
         [DataType(DataType.Text)]
         [StringLength(150)]
@@ -124,7 +124,7 @@ namespace AirAsset.Models
 
             //Init des champs du formulaires
             //exemplaireCODE = "XX0000-000";
-            designation = "designation du moyen";
+            //designation = "designation du moyen";
             prix = 0;
             suivi = "1";
             location = "1";

@@ -8,11 +8,16 @@
 
 <div class="dl-horizontal">
     <h4>Moyen</h4>
-
+    <hr />
     <div>
-        <table class="table">
+        <table class="table" border="1">
             <tr>
-                <td>@Html.ActionLink("Créer un exemplaire du moyen", "Create", "Exemplaires")</td>
+                <td>
+                    @if (User.IsInRole("canEdit"))
+                    {
+                        @Html.ActionLink("Créer un exemplaire du moyen", "Create", "Exemplaires")
+                    }
+                </td>
                 <td align="right">
                     @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
                     {
@@ -26,6 +31,11 @@
             </tr>
         </table>
     </div>
+    <hr />
+
+
+
+
     <dl class="jumbotron">
 
         <dt>
@@ -195,12 +205,21 @@
                     </tr>
                 </table>
             </div>
+
         </dd>
     </dl>
 </div>
 
 
+<hr />
 <p>
-    @Html.ActionLink("Modifier le moyen", "Edit", new { id = Model.moyenID }) |
+
+    @if (User.IsInRole("canEdit"))
+    {
+        @Html.ActionLink("Modifier le moyen", "Edit", new { id = Model.moyenID })
+    }
+
+    |
+
     @Html.ActionLink("Retour à la liste des moyens", "Index")
 </p>

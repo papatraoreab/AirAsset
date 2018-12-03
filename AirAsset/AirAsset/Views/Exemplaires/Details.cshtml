@@ -9,6 +9,8 @@
 <div class="dl-horizontal">
     <h4>Exemplaire</h4>
     <hr />
+
+    <hr />
     <dl class="jumbotron">
         <dt>
             @Html.DisplayNameFor(model => model.reference)
@@ -101,8 +103,13 @@
 
     </dl>
 </div>
+<hr />
 <p>
 
-    @Html.ActionLink("Modifier l'exemplaire", "Edit", new { id = Model.exemplaireID }) | 
+    @if (User.IsInRole("canEdit"))
+    {
+        @Html.ActionLink("Modifier l'exemplaire", "Edit", new { id = Model.exemplaireID })
+    }
+    |
     @Html.ActionLink("Retour à la liste des exemplaires", "Index")
 </p>

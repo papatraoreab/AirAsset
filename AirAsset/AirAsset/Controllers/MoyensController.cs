@@ -37,7 +37,8 @@ namespace AirAsset.Controllers
             ViewBag.entrepotouligne = SortOrder == "entrepotouligne" ? "entrepotouligne_desc" : "entrepotouligne";
             ViewBag.type = SortOrder == "type" ? "type_desc" : "type";
 
-            var rawData = (from m in db.Moyens select m).Where(m => m.designation.Contains(search) || search == null).ToList(); //filter dropdownlist include value search
+            var rawData = (from m in db.Moyens select m).Where(m => m.designation.Contains(search) || search == null).ToList(); //filter dropdownlist and include value 
+            //search by description
             var moyen = from m in rawData select m;
 
             //filter dropdownlist

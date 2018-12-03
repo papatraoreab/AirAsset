@@ -2,3 +2,10 @@
 open AspNetUsers Table, copy userID
 open AspNetRoles Table, copy roleID, 
 open AspNetUserRoles Table, paste roleID and userID  on column roleID and userID of AspNetUserRole
+
+
+-- users
+admin@.../Admin123*
+other@.../Other123*
+
+advanced_user@.../Advanced* (Advanced123* to the next migration)

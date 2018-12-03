@@ -7,41 +7,73 @@
 @using PagedList.Mvc;
 @using PagedList;
 
-<h2>Liste des moyens</h2>
+<hr/>
+<h2 class="text-info">Liste des moyens</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-<!-- zone de recherche-->
-<div>
-    Recherche par Désignation:
-    @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
-    {
-        <input type="text" name="search" placeholder="tapez votre recherche..." />
-        <input type="submit" name="search" value="Search" />
-    }
-
-    @Html.ActionLink("Réinitialiser recherche", "Index")
+<hr />
 
 
+<div class="row">
+    <div class="col-md-4">
+        <table class="table" border="1">
+            <tr>
+                <td>
+                    @if (User.IsInRole("canEdit"))
+                    {
+                        @Html.ActionLink("Créer un nouveau moyen", "Create")
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole("canEdit"))
+                    {
+                        @Html.ActionLink("Exporter les moyens", "exportToCsv")
+                    }
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="col-md-4">
+       
+    </div>
+    <div class="col-md-4">
+        <table class="table" border="1">
+            <tr>
+                <td align="right">
+                    @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
+                    {   <label class="text-info">Recherche:</label>
+                        <input type="text" name="search" placeholder="taper une description ici..." />
+                        <input type="submit" name="search" value="Search" />
+                    }
+
+                    @Html.ActionLink("Réinitialiser recherche", "Index")
+
+                </td>
+            </tr>
+        </table>
+
+    </div>
 </div>
 
 
 
 
-<hr />
 
-@if (User.IsInRole("canEdit"))
-{
-    @Html.ActionLink("Exporter", "exportToCsv")
-}
+
 <div>
-    <table class="table">
+    
+</div>
+<hr/>
+
+
+<div>
+    <table class="table" >
 
         @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
         {
-            <tr class="jumbotron">
+            <tr class="jumbotron" >
                 <th>
                     @Html.ActionLink("Code", "Index",
                     new { SortOrder = ViewBag.moyenCode,
@@ -148,6 +180,7 @@
                 <th></th>
                 <th></th>
                 <th>
+
                     @Html.DropDownList("SelectedSecteur", new SelectList(ViewBag.UniqueSecteur, "Value", "Text", "ViewBag.SelectedSecteur"), "All", new { onchange = "form.submit();" })
                 </th>
                 <th>
@@ -221,8 +254,15 @@
                     </td>
                 -->
                 <td>
+
                     @Html.ActionLink("Détails", "Details", new { id = item.moyenID })
-                    @Html.ActionLink("Modifier", "Edit", new { id = item.moyenID })
+
+
+                    @if (User.IsInRole("canEdit"))
+                    {
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.moyenID })
+                    }
+
 
                     @if (User.IsInRole("canEdit"))
                     {
@@ -237,7 +277,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Aller à la liste de tous les exemplaires des moyens existant", "Index", "Exemplaires")
+    @Html.ActionLink("Aller à la liste de tous les exemplaires des moyens existants", "Index", "Exemplaires")
 </div>
 
 <hr />
