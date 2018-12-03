@@ -4,32 +4,62 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<hr />
+<h2  class="text-info">Details</h2>
 
 <div class="dl-horizontal">
-    <h4>Moyen</h4>
+    <h4 class="text-info">Moyen</h4>
     <hr />
-    <div>
-        <table class="table" border="1">
-            <tr>
-                <td>
-                    @if (User.IsInRole("canEdit"))
-                    {
-                        @Html.ActionLink("Créer un exemplaire du moyen", "Create", "Exemplaires")
-                    }
-                </td>
-                <td align="right">
-                    @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
-                    {
-                        @*<label>Recherche par Code:</label>*@
-                        <label>Lister les exemplaires du moyen:</label>
-                        <input type="text" name="search" placeholder="tapez le code du moyen ici." />
-                        <input type="submit" name="search" value="Search" />
-                    }
-                </td>
 
-            </tr>
-        </table>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <table class="table" border="1">
+                <tr>
+                    <td>
+                        @if (User.IsInRole("canEdit"))
+                        {
+                            @Html.ActionLink("Créer un exemplaire du moyen", "Create", "Exemplaires")
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="col-md-4">
+
+        </div>
+
+        <div class="col-md-4">
+            <table class="table" border="1">
+                <tr>
+                    <td>
+                        @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
+                        {
+                            <label class="text-info">Lister les exemplaires du moyen:</label>
+                            <input type="text" name="search" placeholder="tapez le code du moyen ici." />
+                            <input type="submit" name="search" value="Search" />
+                        }
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div>
+
     </div>
     <hr />
 

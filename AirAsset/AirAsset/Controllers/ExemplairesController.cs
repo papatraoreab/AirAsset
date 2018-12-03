@@ -181,7 +181,7 @@ namespace AirAsset.Controllers
             //prise en charge recherche mettre :  return View(exemplaire.Where(m => m.exemplaireCODE.Contains(search) || search == null).ToList().ToPagedList(i ?? 1, 10));
         }
 
-
+       
         // GET: Exemplaires/Details/5
         //[Authorize(Users = "papa.traore@airasset.com,matthieu.orain@airasset.com,gilles.verin@airasset.com,ahmed.seghrouchni@airasset.com")]
         public ActionResult Details(int? id)

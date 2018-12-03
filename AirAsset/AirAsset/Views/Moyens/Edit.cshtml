@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2  class="text-info">Edit</h2>
 
 
 @using (Html.BeginForm("Edit", "Moyens", null, FormMethod.Post, new {enctype = "multipart/form-data"}))
@@ -13,7 +13,7 @@
 
 <div class="jumbotron">
     <div class="form-horizontal">
-        <h4>Moyen</h4>
+        <h4  class="text-info">Moyen</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.moyenID)

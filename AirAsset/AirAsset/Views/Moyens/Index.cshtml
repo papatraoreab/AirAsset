@@ -38,6 +38,7 @@
     <div class="col-md-4">
        
     </div>
+
     <div class="col-md-4">
         <table class="table" border="1">
             <tr>
@@ -58,173 +59,169 @@
 </div>
 
 
-
-
-
-
-<div>
-    
-</div>
 <hr/>
 
 
 <div>
-    <table class="table" >
+    <table class="table table-responsive" >
 
-        @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
-        {
-            <tr class="jumbotron" >
-                <th>
-                    @Html.ActionLink("Code", "Index",
-                    new { SortOrder = ViewBag.moyenCode,
-                        SelectedSecteur = ViewBag.SelectedSecteur,
-                        SelectedProgramme = ViewBag.SelectedProgramme,
-                        SelectedEntrepot = ViewBag.SelectedEntrepot,
-                        SelectedType = ViewBag.SelectedType
-                })
-                </th>
-
-                <th>
-                    @Html.ActionLink("Désignation", "Index",
-                    new { SortOrder = ViewBag.designation,
-                        SelectedSecteur = ViewBag.SelectedSecteur,
-                        SelectedProgramme = ViewBag.SelectedProgramme,
-                        SelectedEntrepot = ViewBag.SelectedEntrepot,
-                        SelectedType = ViewBag.SelectedType
-                })
-                </th>
-                <th>
-                    @Html.ActionLink("Quantité", "Index",
-                    new { SortOrder = ViewBag.quantite,
-                        SelectedSecteur = ViewBag.SelectedSecteur,
-                        SelectedProgramme = ViewBag.SelectedProgramme,
-                        SelectedEntrepot = ViewBag.SelectedEntrepot,
-                        SelectedType = ViewBag.SelectedType
-                })
-                </th>
-                <th>
-                    @Html.ActionLink("Produit", "Index",
-                    new { SortOrder = ViewBag.secteur,
-                        SelectedSecteur = ViewBag.SelectedSecteur,
-                        SelectedProgramme = ViewBag.SelectedProgramme,
-                        SelectedEntrepot = ViewBag.SelectedEntrepot,
-                        SelectedType = ViewBag.SelectedType})
-                </th>
-                <th>
-                    @Html.ActionLink("Programme", "Index",
-                    new { SortOrder = ViewBag.program,
-                        SelectedSecteur = ViewBag.SelectedSecteur,
-                        SelectedProgramme = ViewBag.SelectedProgramme,
-                        SelectedEntrepot = ViewBag.SelectedEntrepot,
-                        SelectedType = ViewBag.SelectedType
-                })
-                </th>
-                <th>
-                    @Html.ActionLink("Entrepot ou Ligne", "Index",
-                    new { SortOrder = ViewBag.entrepotouligne,
-                        SelectedSecteur = ViewBag.SelectedSecteur,
-                        SelectedProgramme = ViewBag.SelectedProgramme,
-                        SelectedEntrepot = ViewBag.SelectedEntrepot,
-                        SelectedType = ViewBag.SelectedType
-                })
-                </th>
-                <th>
-                    @Html.ActionLink("Type", "Index",
-                    new { SortOrder = ViewBag.type,
-                        SelectedSecteur = ViewBag.SelectedSecteur,
-                        SelectedProgramme = ViewBag.SelectedProgramme,
-                        SelectedEntrepot = ViewBag.SelectedEntrepot,
-                        SelectedType = ViewBag.SelectedType
-                })
-                </th>
-
-
-
-                <!-- hiden display
+        <thead>
+            @using (Html.BeginForm("Index", "Moyens", FormMethod.Get))
+            {
+                <tr class="jumbotron">
+                    <th>
+                        @Html.ActionLink("Code", "Index",
+                        new { SortOrder = ViewBag.moyenCode,
+                            SelectedSecteur = ViewBag.SelectedSecteur,
+                            SelectedProgramme = ViewBag.SelectedProgramme,
+                            SelectedEntrepot = ViewBag.SelectedEntrepot,
+                            SelectedType = ViewBag.SelectedType
+                    })
+                    </th>
 
                     <th>
-                        @Html.DisplayNameFor(model => model.First().description)
+                        @Html.ActionLink("Désignation", "Index",
+                        new { SortOrder = ViewBag.designation,
+                            SelectedSecteur = ViewBag.SelectedSecteur,
+                            SelectedProgramme = ViewBag.SelectedProgramme,
+                            SelectedEntrepot = ViewBag.SelectedEntrepot,
+                            SelectedType = ViewBag.SelectedType
+                    })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().poids)
+                        @Html.ActionLink("Quantité", "Index",
+                        new { SortOrder = ViewBag.quantite,
+                            SelectedSecteur = ViewBag.SelectedSecteur,
+                            SelectedProgramme = ViewBag.SelectedProgramme,
+                            SelectedEntrepot = ViewBag.SelectedEntrepot,
+                            SelectedType = ViewBag.SelectedType
+                    })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().cmu)
+                        @Html.ActionLink("Produit", "Index",
+                        new { SortOrder = ViewBag.secteur,
+                            SelectedSecteur = ViewBag.SelectedSecteur,
+                            SelectedProgramme = ViewBag.SelectedProgramme,
+                            SelectedEntrepot = ViewBag.SelectedEntrepot,
+                            SelectedType = ViewBag.SelectedType})
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().hauteur)
+                        @Html.ActionLink("Programme", "Index",
+                        new { SortOrder = ViewBag.program,
+                            SelectedSecteur = ViewBag.SelectedSecteur,
+                            SelectedProgramme = ViewBag.SelectedProgramme,
+                            SelectedEntrepot = ViewBag.SelectedEntrepot,
+                            SelectedType = ViewBag.SelectedType
+                    })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().longueur)
+                        @Html.ActionLink("Entrepot ou Ligne", "Index",
+                        new { SortOrder = ViewBag.entrepotouligne,
+                            SelectedSecteur = ViewBag.SelectedSecteur,
+                            SelectedProgramme = ViewBag.SelectedProgramme,
+                            SelectedEntrepot = ViewBag.SelectedEntrepot,
+                            SelectedType = ViewBag.SelectedType
+                    })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().largeur)
+                        @Html.ActionLink("Type", "Index",
+                        new { SortOrder = ViewBag.type,
+                            SelectedSecteur = ViewBag.SelectedSecteur,
+                            SelectedProgramme = ViewBag.SelectedProgramme,
+                            SelectedEntrepot = ViewBag.SelectedEntrepot,
+                            SelectedType = ViewBag.SelectedType
+                    })
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.First().vVent)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.First().r_number)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.First().t_number)
-                    </th>
-                -->
 
-                <th></th>
-            </tr>
 
-            <!-- Filter dropdownlist-->
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
+
+                    <!-- hiden display
+
                 <th>
-
-                    @Html.DropDownList("SelectedSecteur", new SelectList(ViewBag.UniqueSecteur, "Value", "Text", "ViewBag.SelectedSecteur"), "All", new { onchange = "form.submit();" })
+                    @Html.DisplayNameFor(model => model.First().description)
                 </th>
                 <th>
-                    @Html.DropDownList("SelectedProgramme", new SelectList(ViewBag.UniqueProgramme, "Value", "Text", "ViewBag.SelectedProgramme"), "All", new { onchange = "form.submit();" })
+                    @Html.DisplayNameFor(model => model.First().poids)
                 </th>
                 <th>
-                    @Html.DropDownList("SelectedEntrepot", new SelectList(ViewBag.UniqueEntrepot, "Value", "Text", "ViewBag.SelectedEntrepot"), "All", new { onchange = "form.submit();" })
+                    @Html.DisplayNameFor(model => model.First().cmu)
                 </th>
                 <th>
-                    @Html.DropDownList("SelectedType", new SelectList(ViewBag.UniqueType, "Value", "Text", "ViewBag.SelectedType"), "All", new { onchange = "form.submit();" })
+                    @Html.DisplayNameFor(model => model.First().hauteur)
                 </th>
-                <th></th>
-            </tr>
-            <!-- end Filter dropdownlist-->
-        }
+                <th>
+                    @Html.DisplayNameFor(model => model.First().longueur)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().largeur)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().vVent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().r_number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().t_number)
+                </th>
+            -->
 
+                    <th></th>
+                </tr>
 
+                <!-- Filter dropdownlist-->
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>
 
-        @foreach (var item in Model)
-        {
-            <tr class="jumbotron">
-                <td>
-                    @Html.DisplayFor(modelItem => item.moyenCODE)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.designation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.quantite)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.secteur)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.program)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.entrepot)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.type)
-                </td>
+                        @Html.DropDownList("SelectedSecteur", new SelectList(ViewBag.UniqueSecteur, "Value", "Text", "ViewBag.SelectedSecteur"), "All", new { onchange = "form.submit();" })
+                    </th>
+                    <th>
+                        @Html.DropDownList("SelectedProgramme", new SelectList(ViewBag.UniqueProgramme, "Value", "Text", "ViewBag.SelectedProgramme"), "All", new { onchange = "form.submit();" })
+                    </th>
+                    <th>
+                        @Html.DropDownList("SelectedEntrepot", new SelectList(ViewBag.UniqueEntrepot, "Value", "Text", "ViewBag.SelectedEntrepot"), "All", new { onchange = "form.submit();" })
+                    </th>
+                    <th>
+                        @Html.DropDownList("SelectedType", new SelectList(ViewBag.UniqueType, "Value", "Text", "ViewBag.SelectedType"), "All", new { onchange = "form.submit();" })
+                    </th>
+                    <th></th>
+                </tr>
+                <!-- end Filter dropdownlist-->
+            }
 
-                <!-- hiden display
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr class="jumbotron">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.moyenCODE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.designation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.quantite)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.secteur)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.program)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.entrepot)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.type)
+                        </td>
+
+                        <!-- hiden display
                     <td>
                         @Html.DisplayFor(modelItem => item.description)
                     </td>
@@ -253,24 +250,27 @@
                         @Html.DisplayFor(modelItem => item.t_number)
                     </td>
                 -->
-                <td>
+                        <td>
 
-                    @Html.ActionLink("Détails", "Details", new { id = item.moyenID })
-
-
-                    @if (User.IsInRole("canEdit"))
-                    {
-                        @Html.ActionLink("Modifier", "Edit", new { id = item.moyenID })
-                    }
+                            @Html.ActionLink("Détails", "Details", new { id = item.moyenID })
 
 
-                    @if (User.IsInRole("canEdit"))
-                    {
-                        @Html.ActionLink("Supprimer", "Delete", new { id = item.moyenID })
-                    }
-                </td>
-            </tr>
-        }
+                            @if (User.IsInRole("canEdit"))
+                            {
+                                @Html.ActionLink("Modifier", "Edit", new { id = item.moyenID })
+                            }
+
+
+                            @if (User.IsInRole("canEdit"))
+                            {
+                                @Html.ActionLink("Supprimer", "Delete", new { id = item.moyenID })
+                            }
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
 
     </table>
 

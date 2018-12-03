@@ -124,7 +124,7 @@ namespace AirAsset.Models
 
             //Init des champs du formulaires
             //exemplaireCODE = "XX0000-000";
-            //designation = "designation du moyen";
+            designation = "designation du moyen";
             prix = 0;
             suivi = "1";
             location = "1";

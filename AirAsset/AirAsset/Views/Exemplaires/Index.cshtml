@@ -50,102 +50,22 @@
 
     </div>
 </div>
-
-
-
-
-
    
 <hr />
 
 
 <div>
-    <table class="table">
+    <table class="table table-responsive">
 
-        @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
-        {
-            <tr class="jumbotron">
-                <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index-->
-                <th>
-                    @Html.ActionLink("Référence", "Index",
-                    new { SortOrder = ViewBag.reference,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
+        <thead>
+            @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
+            {
 
-                <th>
-                    @Html.ActionLink("Code", "Index",
-                    new { SortOrder = ViewBag.exemplaireCode,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
-                <th>
-                    @Html.ActionLink("Désignation", "Index",
-                    new { SortOrder = ViewBag.designation,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
-
-
-                <th>
-                    @Html.ActionLink("Prix", "Index",
-                    new { SortOrder = ViewBag.prix,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
-
-                <th>
-                    @Html.ActionLink("Suivi", "Index",
-                    new { SortOrder = ViewBag.suivi,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
-                <th>
-                    @Html.ActionLink("Localisation", "Index",
-                    new { SortOrder = ViewBag.location,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
-
-                <th>
-                    @Html.ActionLink("Type de Localisation", "Index",
-                    new { SortOrder = ViewBag.location,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
-
-                @*
+                <tr class="jumbotron">
+                    <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index-->
                     <th>
-                        @Html.ActionLink("Fournisseur", "Index",
-                        new { SortOrder = ViewBag.fournisseur,
+                        @Html.ActionLink("Référence", "Index",
+                        new { SortOrder = ViewBag.reference,
                             SelectedReference = ViewBag.SelectedReference,
                             SelectedSuivi = ViewBag.SelectedSuivi,
                             SelectedLocalisation = ViewBag.SelectedLocalisation,
@@ -153,23 +73,10 @@
                             SelectedStatut = ViewBag.SelectedStatut
                         })
                     </th>
-                *@
 
-                <th>
-                    @Html.ActionLink("Statut", "Index",
-                    new { SortOrder = ViewBag.statut,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
-
-                @*
-                        <th>
-                        @Html.ActionLink("Entrée en Service", "Index",
-                        new { SortOrder = ViewBag.date_es,
+                    <th>
+                        @Html.ActionLink("Code", "Index",
+                        new { SortOrder = ViewBag.exemplaireCode,
                             SelectedReference = ViewBag.SelectedReference,
                             SelectedSuivi = ViewBag.SelectedSuivi,
                             SelectedLocalisation = ViewBag.SelectedLocalisation,
@@ -177,11 +84,65 @@
                             SelectedStatut = ViewBag.SelectedStatut
                         })
                     </th>
-                *@
+                    <th>
+                        @Html.ActionLink("Désignation", "Index",
+                        new { SortOrder = ViewBag.designation,
+                            SelectedReference = ViewBag.SelectedReference,
+                            SelectedSuivi = ViewBag.SelectedSuivi,
+                            SelectedLocalisation = ViewBag.SelectedLocalisation,
+                            SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                            SelectedStatut = ViewBag.SelectedStatut
+                        })
+                    </th>
 
+
+                    <th>
+                        @Html.ActionLink("Prix", "Index",
+                        new { SortOrder = ViewBag.prix,
+                            SelectedSuivi = ViewBag.SelectedSuivi,
+                            SelectedReference = ViewBag.SelectedReference,
+                            SelectedLocalisation = ViewBag.SelectedLocalisation,
+                            SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                            SelectedStatut = ViewBag.SelectedStatut
+                        })
+                    </th>
+
+                    <th>
+                        @Html.ActionLink("Suivi", "Index",
+                        new { SortOrder = ViewBag.suivi,
+                            SelectedReference = ViewBag.SelectedReference,
+                            SelectedSuivi = ViewBag.SelectedSuivi,
+                            SelectedLocalisation = ViewBag.SelectedLocalisation,
+                            SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                            SelectedStatut = ViewBag.SelectedStatut
+                        })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Localisation", "Index",
+                        new { SortOrder = ViewBag.location,
+                            SelectedReference = ViewBag.SelectedReference,
+                            SelectedSuivi = ViewBag.SelectedSuivi,
+                            SelectedLocalisation = ViewBag.SelectedLocalisation,
+                            SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                            SelectedStatut = ViewBag.SelectedStatut
+                        })
+                    </th>
+
+                    <th>
+                        @Html.ActionLink("Type de Localisation", "Index",
+                        new { SortOrder = ViewBag.location,
+                            SelectedReference = ViewBag.SelectedReference,
+                            SelectedSuivi = ViewBag.SelectedSuivi,
+                            SelectedLocalisation = ViewBag.SelectedLocalisation,
+                            SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                            SelectedStatut = ViewBag.SelectedStatut
+                        })
+                    </th>
+
+                    @*
                 <th>
-                    @Html.ActionLink("Fin de Service", "Index",
-                    new { SortOrder = ViewBag.date_fs,
+                    @Html.ActionLink("Fournisseur", "Index",
+                    new { SortOrder = ViewBag.fournisseur,
                         SelectedReference = ViewBag.SelectedReference,
                         SelectedSuivi = ViewBag.SelectedSuivi,
                         SelectedLocalisation = ViewBag.SelectedLocalisation,
@@ -189,118 +150,164 @@
                         SelectedStatut = ViewBag.SelectedStatut
                     })
                 </th>
-                <th></th>
+                    *@
 
-            </tr>
+                    <th>
+                        @Html.ActionLink("Statut", "Index",
+                        new { SortOrder = ViewBag.statut,
+                            SelectedReference = ViewBag.SelectedReference,
+                            SelectedSuivi = ViewBag.SelectedSuivi,
+                            SelectedLocalisation = ViewBag.SelectedLocalisation,
+                            SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                            SelectedStatut = ViewBag.SelectedStatut
+                        })
+                    </th>
 
-            <!-- start Filter dropdownlist-->
-            <tr>
-                <th>
-                    @Html.DropDownList("SelectedReference", new SelectList(ViewBag.UniqueReference, "Value", "Text", "ViewBag.SelectedReference"), "All", new { onchange = "form.submit();" })
-
+                    @*
+                    <th>
+                    @Html.ActionLink("Entrée en Service", "Index",
+                    new { SortOrder = ViewBag.date_es,
+                        SelectedReference = ViewBag.SelectedReference,
+                        SelectedSuivi = ViewBag.SelectedSuivi,
+                        SelectedLocalisation = ViewBag.SelectedLocalisation,
+                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                        SelectedStatut = ViewBag.SelectedStatut
+                    })
                 </th>
-                <th></th>
-                <th>
-                    @Html.DropDownList("SelectedDesignation", new SelectList(ViewBag.UniqueDesignation, "Value", "Text", "ViewBag.SelectedDesignation"), "All", new { onchange = "form.submit();" })
-                </th>
-                <th></th>
-                <th>
-                    @Html.DropDownList("SelectedSuivi", new SelectList(ViewBag.UniqueSuivi, "Value", "Text", "ViewBag.SelectedSuivi"), "All", new { onchange = "form.submit();" })
-                </th>
-                <th>
-                    @Html.DropDownList("SelectedLocalisation", new SelectList(ViewBag.UniqueLocalisation, "Value", "Text", "ViewBag.SelectedLocalisation"), "All", new { onchange = "form.submit();" })
-                </th>
-                <th>
-                    @Html.DropDownList("SelectedTypeLocalisation", new SelectList(ViewBag.UniqueTypeLocalisation, "Value", "Text", "ViewBag.SelectedTypeLocalisation"), "All", new { onchange = "form.submit();" })
-                </th>
-                <th>
-                    @Html.DropDownList("SelectedStatut", new SelectList(ViewBag.UniqueStatut, "Value", "Text", "ViewBag.SelectedStatut"), "All", new { onchange = "form.submit();" })
-                </th>
-                <th></th>
-                <th></th>
+                    *@
 
-            </tr>
-            <!-- end Filter dropdownlist-->
-        }
+                    <th>
+                        @Html.ActionLink("Fin de Service", "Index",
+                        new { SortOrder = ViewBag.date_fs,
+                            SelectedReference = ViewBag.SelectedReference,
+                            SelectedSuivi = ViewBag.SelectedSuivi,
+                            SelectedLocalisation = ViewBag.SelectedLocalisation,
+                            SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                            SelectedStatut = ViewBag.SelectedStatut
+                        })
+                    </th>
+                    <th></th>
 
+                </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr class="jumbotron">
-                <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index-->
-                <td>
-                    @Html.DisplayFor(modelItem => item.reference)
-                </td>
+                <!-- start Filter dropdownlist-->
+                <tr>
+                    <th>
+                        @Html.DropDownList("SelectedReference", new SelectList(ViewBag.UniqueReference, "Value", "Text", "ViewBag.SelectedReference"), "All", new { onchange = "form.submit();" })
 
+                    </th>
+                    <th></th>
+                    <th>
+                        @Html.DropDownList("SelectedDesignation", new SelectList(ViewBag.UniqueDesignation, "Value", "Text", "ViewBag.SelectedDesignation"), "All", new { onchange = "form.submit();" })
+                    </th>
+                    <th></th>
+                    <th>
+                        @Html.DropDownList("SelectedSuivi", new SelectList(ViewBag.UniqueSuivi, "Value", "Text", "ViewBag.SelectedSuivi"), "All", new { onchange = "form.submit();" })
+                    </th>
+                    <th>
+                        @Html.DropDownList("SelectedLocalisation", new SelectList(ViewBag.UniqueLocalisation, "Value", "Text", "ViewBag.SelectedLocalisation"), "All", new { onchange = "form.submit();" })
+                    </th>
+                    <th>
+                        @Html.DropDownList("SelectedTypeLocalisation", new SelectList(ViewBag.UniqueTypeLocalisation, "Value", "Text", "ViewBag.SelectedTypeLocalisation"), "All", new { onchange = "form.submit();" })
+                    </th>
+                    <th>
+                        @Html.DropDownList("SelectedStatut", new SelectList(ViewBag.UniqueStatut, "Value", "Text", "ViewBag.SelectedStatut"), "All", new { onchange = "form.submit();" })
+                    </th>
+                    <th></th>
+                    <th></th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.exemplaireCODE)
-                </td>
+                </tr>
+                <!-- end Filter dropdownlist-->
+            }
 
+        </thead>
+       
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.designation)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.prix)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.suivi)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.location)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.typelocation)
-                </td>
-
-                @*
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fournisseur)
-                    </td>
-
-                *@
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.statut)
-                </td>
-
-                @*
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date_ES)
-                    </td>
-                *@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date_FS)
-                </td>
-
-                <td>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    
+                        <tr class="jumbotron">
+                            <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index-->
+                            <td>
+                                @Html.DisplayFor(modelItem => item.reference)
+                            </td>
 
 
-                    @Html.ActionLink("Détails", "Details", new { id = item.exemplaireID })
-
-                    @if (User.IsInRole("canEdit"))
-                    {
-                        @Html.ActionLink("Modifier", "Edit", new { id = item.exemplaireID })
-                    }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.exemplaireCODE)
+                            </td>
 
 
+                            <td>
+                                @Html.DisplayFor(modelItem => item.designation)
+                            </td>
 
-                    @if (User.IsInRole("canEdit"))
-                    {
-                        @Html.ActionLink("Supprimer", "Delete", new { id = item.exemplaireID })
-                    }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.prix)
+                            </td>
 
-                </td>
-            </tr>
-        }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.suivi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.location)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.typelocation)
+                            </td>
 
+                            @*
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fournisseur)
+                        </td>
+
+                            *@
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.statut)
+                            </td>
+
+                            @*
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date_ES)
+                        </td>
+                            *@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date_FS)
+                            </td>
+
+                            <td>
+
+
+                                @Html.ActionLink("Détails", "Details", new { id = item.exemplaireID })
+
+                                @if (User.IsInRole("canEdit"))
+                                {
+                                    @Html.ActionLink("Modifier", "Edit", new { id = item.exemplaireID })
+                                }
+
+
+
+                                @if (User.IsInRole("canEdit"))
+                                {
+                                    @Html.ActionLink("Supprimer", "Delete", new { id = item.exemplaireID })
+                                }
+
+                            </td>
+                        </tr>
+                    
+                }
+
+            }
+        </tbody>
     </table>
 
 </div>
+
 <div>
     @Html.ActionLink("Retour à la liste des moyens", "Index", "Moyens")
 </div>

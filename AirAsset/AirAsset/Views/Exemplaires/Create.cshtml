@@ -4,14 +4,14 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Créer un exemplaire</h2>
+<h2  class="text-info">Créer un exemplaire</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="jumbotron">
         <div class="form-horizontal">
-            <h4>Exemplaire</h4>
+            <h4  class="text-info">Exemplaire</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @*
