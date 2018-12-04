@@ -48,7 +48,7 @@ namespace AirAsset.Models
         [DataType(DataType.Text)]
         public double prix { get; set; }
 
-        [Display(Name = "Suivi")]
+        [Display(Name = "Tracked in W@Y")]
         public string suivi { get; set; }
 
         [Display(Name = "Localisation")]

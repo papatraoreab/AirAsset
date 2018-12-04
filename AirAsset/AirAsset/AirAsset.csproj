@@ -393,6 +393,7 @@
     </None>
     <Content Include="Doc\lexiquesML.pdf" />
     <Content Include="Doc\PlanSite.pdf" />
+    <Content Include="Doc\codification.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

@@ -10,6 +10,9 @@ using System.Web.Mvc;
 using AirAsset.Models;
 using PagedList.Mvc;
 using PagedList;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Web.UI;
 
 namespace AirAsset.Controllers
 {
@@ -438,7 +441,8 @@ namespace AirAsset.Controllers
 
             Response.ClearContent();
             Response.AddHeader("content-disposition", "attachment;filename=exportedExemplaires.csv");
-            Response.ContentType = "text/csv";
+            Response.ContentType = "application/ms-excel";
+            
 
             var exemplaires = db.Exemplaires;
 
@@ -462,7 +466,30 @@ namespace AirAsset.Controllers
         }
 
 
-        
-        
+
+        public ActionResult Export()
+        {
+
+            var gv = new GridView();
+            var exemplaires = db.Exemplaires;
+
+            gv.DataSource = exemplaires;
+            gv.DataBind();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=DemoExcel.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.Charset = "";
+            StringWriter objStringWriter = new StringWriter();
+            HtmlTextWriter objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+            gv.RenderControl(objHtmlTextWriter);
+            Response.Output.Write(objStringWriter.ToString());
+            Response.Flush();
+            Response.End();
+            return View("Index");
+            
+        }
+
+
     }
 }

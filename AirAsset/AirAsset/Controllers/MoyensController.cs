@@ -27,7 +27,7 @@ namespace AirAsset.Controllers
         */
 
         // GET: Moyens
-        public ActionResult Index(string search, int? i, string SortOrder, string SelectedSecteur, string SelectedProgramme, string SelectedEntrepot, string SelectedType)
+        public ActionResult Index(string search, int? i, string SortOrder, string SelectedCode, string SelectedDesignation, string SelectedSecteur, string SelectedProgramme, string SelectedEntrepot, string SelectedType)
         {
             ViewBag.moyenCode = String.IsNullOrEmpty(SortOrder) ? "moyencode_desc" : "";
             ViewBag.designation = SortOrder == "designation" ? "designation_desc" : "designation";
@@ -42,6 +42,17 @@ namespace AirAsset.Controllers
             var moyen = from m in rawData select m;
 
             //filter dropdownlist
+            if (!String.IsNullOrEmpty(SelectedCode))
+            {
+                moyen = moyen.Where(m => m.moyenCODE.Trim().Equals(SelectedCode.Trim()));
+            }
+
+            if (!String.IsNullOrEmpty(SelectedDesignation))
+            {
+                moyen = moyen.Where(m => m.designation.Trim().Equals(SelectedDesignation.Trim()));
+            }
+            
+
             if (!String.IsNullOrEmpty(SelectedSecteur))
             {
                 moyen = moyen.Where(m => m.secteur.Trim().Equals(SelectedSecteur.Trim()));
@@ -62,6 +73,14 @@ namespace AirAsset.Controllers
                 moyen = moyen.Where(m => m.type.Trim().Equals(SelectedType.Trim()));
             }
 
+            var UniqueCode = from m in moyen group m by m.moyenCODE into newGroup where newGroup.Key != null orderby newGroup.Key select new { moyenCODE = newGroup.Key };
+            ViewBag.UniqueCode = UniqueCode.Select(m => new SelectListItem { Value = m.moyenCODE, Text = m.moyenCODE }).ToList();
+
+
+            var UniqueDesignation = from m in moyen group m by m.designation into newGroup where newGroup.Key != null orderby newGroup.Key select new { designation = newGroup.Key };
+            ViewBag.UniqueDesignation = UniqueDesignation.Select(m => new SelectListItem { Value = m.designation, Text = m.designation }).ToList();
+
+
             var UniqueSecteur = from m in moyen group m by m.secteur into newGroup where newGroup.Key != null orderby newGroup.Key select new { secteur = newGroup.Key };
             ViewBag.UniqueSecteur = UniqueSecteur.Select(m => new SelectListItem { Value = m.secteur, Text = m.secteur }).ToList();
 
@@ -74,6 +93,9 @@ namespace AirAsset.Controllers
             var UniqueType = from m in moyen group m by m.type into newGroup where newGroup.Key != null orderby newGroup.Key select new { type = newGroup.Key };
             ViewBag.UniqueType = UniqueType.Select(m => new SelectListItem { Value = m.type, Text = m.type }).ToList();
 
+         
+            ViewBag.SelectedCode = SelectedCode;
+            ViewBag.SelectedDesignation = SelectedDesignation;
             ViewBag.SelectedSecteur = SelectedSecteur;
             ViewBag.SelectedProgramme = SelectedProgramme;
             ViewBag.SelectedEntrepot = SelectedEntrepot;

@@ -6,10 +6,9 @@
 
 @using PagedList.Mvc;
 @using PagedList;
-<hr/>
+<hr />
 <h2 class="text-info">Liste des exemplaires</h2>
 <hr />
-
 
 
 <div class="row">
@@ -29,17 +28,17 @@
                     }
                 </td>
                 @*
-            <td align="right">
+                    <td align="right">
 
-                    @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
-                        {
-                            <input type="text" name="search" placeholder="tapez un code exemplaire ici..." />
-                            <input type="submit" name="search" value="Search" />
-                        }
+                            @using (Html.BeginForm("Index", "Exemplaires", FormMethod.Get))
+                                {
+                                    <input type="text" name="search" placeholder="tapez un code exemplaire ici..." />
+                                    <input type="submit" name="search" value="Search" />
+                                }
 
-                    @Html.ActionLink("Réinitialiser recherche", "Index")
+                            @Html.ActionLink("Réinitialiser recherche", "Index")
 
-            </td>
+                    </td>
                 *@
             </tr>
         </table>
@@ -50,7 +49,7 @@
 
     </div>
 </div>
-   
+
 <hr />
 
 
@@ -108,7 +107,7 @@
                     </th>
 
                     <th>
-                        @Html.ActionLink("Suivi", "Index",
+                        @Html.ActionLink("Tracked in W@Y", "Index",
                         new { SortOrder = ViewBag.suivi,
                             SelectedReference = ViewBag.SelectedReference,
                             SelectedSuivi = ViewBag.SelectedSuivi,
@@ -140,16 +139,16 @@
                     </th>
 
                     @*
-                <th>
-                    @Html.ActionLink("Fournisseur", "Index",
-                    new { SortOrder = ViewBag.fournisseur,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
+                        <th>
+                            @Html.ActionLink("Fournisseur", "Index",
+                            new { SortOrder = ViewBag.fournisseur,
+                                SelectedReference = ViewBag.SelectedReference,
+                                SelectedSuivi = ViewBag.SelectedSuivi,
+                                SelectedLocalisation = ViewBag.SelectedLocalisation,
+                                SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                                SelectedStatut = ViewBag.SelectedStatut
+                            })
+                        </th>
                     *@
 
                     <th>
@@ -164,16 +163,16 @@
                     </th>
 
                     @*
-                    <th>
-                    @Html.ActionLink("Entrée en Service", "Index",
-                    new { SortOrder = ViewBag.date_es,
-                        SelectedReference = ViewBag.SelectedReference,
-                        SelectedSuivi = ViewBag.SelectedSuivi,
-                        SelectedLocalisation = ViewBag.SelectedLocalisation,
-                        SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
-                        SelectedStatut = ViewBag.SelectedStatut
-                    })
-                </th>
+                            <th>
+                            @Html.ActionLink("Entrée en Service", "Index",
+                            new { SortOrder = ViewBag.date_es,
+                                SelectedReference = ViewBag.SelectedReference,
+                                SelectedSuivi = ViewBag.SelectedSuivi,
+                                SelectedLocalisation = ViewBag.SelectedLocalisation,
+                                SelectedTypeLocalisation = ViewBag.SelectedTypeLocalisation,
+                                SelectedStatut = ViewBag.SelectedStatut
+                            })
+                        </th>
                     *@
 
                     <th>
@@ -193,25 +192,25 @@
                 <!-- start Filter dropdownlist-->
                 <tr>
                     <th>
-                        @Html.DropDownList("SelectedReference", new SelectList(ViewBag.UniqueReference, "Value", "Text", "ViewBag.SelectedReference"), "All", new { onchange = "form.submit();" })
+                        @Html.DropDownList("SelectedReference", new SelectList(ViewBag.UniqueReference, "Value", "Text", "ViewBag.SelectedReference"), "All", new { id = "normalDropDown", onchange = "form.submit();" })
 
                     </th>
                     <th></th>
                     <th>
-                        @Html.DropDownList("SelectedDesignation", new SelectList(ViewBag.UniqueDesignation, "Value", "Text", "ViewBag.SelectedDesignation"), "All", new { onchange = "form.submit();" })
+                        @Html.DropDownList("SelectedDesignation", new SelectList(ViewBag.UniqueDesignation, "Value", "Text", "ViewBag.SelectedDesignation"), "All", new { id = "normalDropDown", onchange = "form.submit();" })
                     </th>
                     <th></th>
                     <th>
-                        @Html.DropDownList("SelectedSuivi", new SelectList(ViewBag.UniqueSuivi, "Value", "Text", "ViewBag.SelectedSuivi"), "All", new { onchange = "form.submit();" })
+                        @Html.DropDownList("SelectedSuivi", new SelectList(ViewBag.UniqueSuivi, "Value", "Text", "ViewBag.SelectedSuivi"), "All", new { id = "normalDropDown", onchange = "form.submit();" })
                     </th>
                     <th>
-                        @Html.DropDownList("SelectedLocalisation", new SelectList(ViewBag.UniqueLocalisation, "Value", "Text", "ViewBag.SelectedLocalisation"), "All", new { onchange = "form.submit();" })
+                        @Html.DropDownList("SelectedLocalisation", new SelectList(ViewBag.UniqueLocalisation, "Value", "Text", "ViewBag.SelectedLocalisation"), "All", new { id = "normalDropDown", onchange = "form.submit();" })
                     </th>
                     <th>
-                        @Html.DropDownList("SelectedTypeLocalisation", new SelectList(ViewBag.UniqueTypeLocalisation, "Value", "Text", "ViewBag.SelectedTypeLocalisation"), "All", new { onchange = "form.submit();" })
+                        @Html.DropDownList("SelectedTypeLocalisation", new SelectList(ViewBag.UniqueTypeLocalisation, "Value", "Text", "ViewBag.SelectedTypeLocalisation"), "All", new { id = "normalDropDown", onchange = "form.submit();" })
                     </th>
                     <th>
-                        @Html.DropDownList("SelectedStatut", new SelectList(ViewBag.UniqueStatut, "Value", "Text", "ViewBag.SelectedStatut"), "All", new { onchange = "form.submit();" })
+                        @Html.DropDownList("SelectedStatut", new SelectList(ViewBag.UniqueStatut, "Value", "Text", "ViewBag.SelectedStatut"), "All", new { id = "normalDropDown", onchange = "form.submit();" })
                     </th>
                     <th></th>
                     <th></th>
@@ -221,85 +220,85 @@
             }
 
         </thead>
-       
+
 
         <tbody>
             @if (Model != null)
             {
                 foreach (var item in Model)
                 {
-                    
-                        <tr class="jumbotron">
-                            <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index-->
-                            <td>
-                                @Html.DisplayFor(modelItem => item.reference)
-                            </td>
 
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.exemplaireCODE)
-                            </td>
-
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.designation)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.prix)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.suivi)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.location)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.typelocation)
-                            </td>
-
-                            @*
-
+                    <tr class="jumbotron">
+                        <!-- hiden display, replacing(item.moyenID,item.Moyen.moyenCODE), to print moyenCODE on View Exemplaire Index-->
                         <td>
-                            @Html.DisplayFor(modelItem => item.fournisseur)
+                            @Html.DisplayFor(modelItem => item.reference)
                         </td>
 
-                            *@
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.statut)
-                            </td>
-
-                            @*
                         <td>
-                            @Html.DisplayFor(modelItem => item.Date_ES)
+                            @Html.DisplayFor(modelItem => item.exemplaireCODE)
                         </td>
-                            *@
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Date_FS)
-                            </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.designation)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.prix)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.suivi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.location)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.typelocation)
+                        </td>
+
+                        @*
 
                             <td>
-
-
-                                @Html.ActionLink("Détails", "Details", new { id = item.exemplaireID })
-
-                                @if (User.IsInRole("canEdit"))
-                                {
-                                    @Html.ActionLink("Modifier", "Edit", new { id = item.exemplaireID })
-                                }
-
-
-
-                                @if (User.IsInRole("canEdit"))
-                                {
-                                    @Html.ActionLink("Supprimer", "Delete", new { id = item.exemplaireID })
-                                }
-
+                                @Html.DisplayFor(modelItem => item.fournisseur)
                             </td>
-                        </tr>
-                    
+
+                        *@
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.statut)
+                        </td>
+
+                        @*
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date_ES)
+                            </td>
+                        *@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date_FS)
+                        </td>
+
+                        <td>
+
+
+                            @Html.ActionLink("Détails", "Details", new { id = item.exemplaireID })
+
+                            @if (User.IsInRole("canEdit"))
+                            {
+                                @Html.ActionLink("Modifier", "Edit", new { id = item.exemplaireID })
+                            }
+
+
+
+                            @if (User.IsInRole("canEdit"))
+                            {
+                                @Html.ActionLink("Supprimer", "Delete", new { id = item.exemplaireID })
+                            }
+
+                        </td>
+                    </tr>
+
                 }
 
             }
@@ -315,3 +314,16 @@
 <hr />
 
 @Html.PagedListPager(Model, i => Url.Action("Index", "Exemplaires", new { i, search = Request.QueryString["search"] }))
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            //normal dropdown
+            $("#normalDropDown").chosen();
+            disable_search_threshold: true
+        });
+
+    </script>
+}

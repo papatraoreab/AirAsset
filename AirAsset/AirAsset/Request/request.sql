@@ -53,6 +53,7 @@ drop table __MigrationHistory
 /*
 update Exemplaires set moyenCODE ='XXY000-1' where exemplaireID=1
 
+update Moyens set type='Ferrure' where moyenID=2
 
 select* from AspNetUsers
 update AspNetUsers set UserName ='username' where Id='id'
