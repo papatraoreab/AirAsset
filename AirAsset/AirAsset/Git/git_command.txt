@@ -13,7 +13,7 @@ git checkout "name of branche" -- to simply move from one branch to another
 
 
 -- allow the user to connect to a remote repository, the following command lists the remote repository currently configured
-git reùote -v
+git remote -v
 
 --allows the user to connect the local repository to a remote server 
 git remote add origin "remote server address"
